@@ -15,9 +15,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PaymentVerifyRequest {
 
-
-
-
+    private Long paymentId;
+    private PaymentGateway gateway;
 
     // Razorpay specific fields
     private String razorpayPaymentId;

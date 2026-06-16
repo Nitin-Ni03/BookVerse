@@ -246,7 +246,7 @@ export default function AdminReservationsPage() {
                 </Typography>
                 <Typography variant="body1">
                   {new Date(
-                    selectedReservation.reservationDate
+                    selectedReservation.reservedAt
                   ).toLocaleString()}
                 </Typography>
               </Paper>

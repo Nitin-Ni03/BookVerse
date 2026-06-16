@@ -58,7 +58,9 @@ export default function UserLayout() {
   const { user } = useSelector((state) => state.auth);
 
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const currentDrawerWidth = isCollapsed ? 72 : drawerWidth;
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -98,20 +100,25 @@ export default function UserLayout() {
       <AppBar
         position="fixed"
         sx={{
-          width: { md: `calc(100% - ${drawerWidth}px)` },
-          ml: { md: `${drawerWidth}px` },
+          width: { md: `calc(100% - ${currentDrawerWidth}px)` },
+          ml: { md: `${currentDrawerWidth}px` },
           bgcolor: "var(--color-card)",
           color: "var(--color-textPrimary)",
           borderBottom: "1px solid var(--color-border)",
           boxShadow: "none",
+          transition: (theme) =>
+            theme.transitions.create(["width", "margin"], {
+              easing: theme.transitions.easing.sharp,
+              duration: theme.transitions.duration.enteringScreen,
+            }),
         }}
       >
         <Toolbar>
           <IconButton
             color="inherit"
             edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { md: "none" } }}
+            onClick={isMobile ? handleDrawerToggle : () => setIsCollapsed(!isCollapsed)}
+            sx={{ mr: 2 }}
           >
             <MenuIcon />
           </IconButton>
@@ -191,6 +198,7 @@ export default function UserLayout() {
         isMobile={isMobile}
         setMobileOpen={setMobileOpen}
         handleProfileMenuClose={handleProfileMenuClose}
+        isCollapsed={isCollapsed}
       />
 
       {/* Main Content */}
@@ -198,8 +206,13 @@ export default function UserLayout() {
         component="main"
         sx={{
           flexGrow: 1,
-          width: { md: `calc(100% - ${drawerWidth}px)` },
+          width: { md: `calc(100% - ${currentDrawerWidth}px)` },
           minHeight: "100vh",
+          transition: (theme) =>
+            theme.transitions.create(["width", "margin"], {
+              easing: theme.transitions.easing.sharp,
+              duration: theme.transitions.duration.enteringScreen,
+            }),
         }}
       >
         <Toolbar />

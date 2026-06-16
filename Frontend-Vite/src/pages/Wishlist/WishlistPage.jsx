@@ -213,10 +213,10 @@ const WishlistPage = () => {
   if (loading) {
     return (
       <Layout>
-        <div className="flex items-center justify-center min-h-screen">
+        <div className="flex items-center justify-center min-h-screen bg-[var(--color-background)] text-[var(--color-textPrimary)] transition-colors duration-300">
           <div className="text-center">
             <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-indigo-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading your wishlist...</p>
+            <p className="text-[var(--color-textSecondary)]">Loading your wishlist...</p>
           </div>
         </div>
       </Layout>
@@ -225,19 +225,19 @@ const WishlistPage = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-8">
+      <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-textPrimary)] py-8 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="mb-8 animate-fade-in-up">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-4xl font-bold text-gray-900 mb-2">
+                <h1 className="text-4xl font-bold text-[var(--color-textPrimary)] mb-2">
                   My{" "}
                   <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                     Wishlist
                   </span>
                 </h1>
-                <p className="text-lg text-gray-600">
+                <p className="text-lg text-[var(--color-textSecondary)]">
                   {myWishlist.length}{" "}
                   {myWishlist.length === 1 ? "book" : "books"} saved
                 </p>
@@ -277,14 +277,14 @@ const WishlistPage = () => {
 
           {myWishlist.length === 0 ? (
             // Empty State
-            <div className="text-center py-16 bg-white rounded-2xl shadow-xl">
-              <div className="text-gray-400 mb-4">
+            <div className="text-center py-16 bg-[var(--color-card)] border border-[var(--color-border)] rounded-2xl shadow-xl">
+              <div className="text-[var(--color-textSecondary)] mb-4">
                 <FavoriteIcon sx={{ fontSize: 80 }} />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">
+              <h3 className="text-2xl font-bold text-[var(--color-textPrimary)] mb-2">
                 Your Wishlist is Empty
               </h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-[var(--color-textSecondary)] mb-6">
                 Start adding books you'd like to read!
               </p>
               <Button
@@ -298,7 +298,7 @@ const WishlistPage = () => {
           ) : (
             <>
               {/* Toolbar */}
-              <div className="bg-white rounded-xl shadow-md p-4 mb-6 animate-fade-in-up animation-delay-200">
+              <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl shadow-md p-4 mb-6 animate-fade-in-up animation-delay-200">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                   {/* Selection Info */}
                   <div className="flex items-center space-x-4">
@@ -317,7 +317,7 @@ const WishlistPage = () => {
                         "&.Mui-checked": { color: "#4F46E5" },
                       }}
                     />
-                    <span className="text-gray-700 font-medium">
+                    <span className="text-[var(--color-textPrimary)] font-medium">
                       {selectedItems.size > 0
                         ? `${selectedItems.size} selected`
                         : "Select all"}

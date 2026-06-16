@@ -25,7 +25,7 @@ import {
   TrendingUp as TrendingUpIcon,
 } from '@mui/icons-material';
 
-const SidebarDrawer = ({ isMobile, setMobileOpen, handleProfileMenuClose }) => {
+const SidebarDrawer = ({ isMobile, setMobileOpen, handleProfileMenuClose, isCollapsed }) => {
   const { myLoans } = useSelector((state) => state.bookLoans);
 
   const { activeSubscription } = useSelector((state) => state.subscriptions);
@@ -91,13 +91,14 @@ const SidebarDrawer = ({ isMobile, setMobileOpen, handleProfileMenuClose }) => {
       {/* Logo Section with Animation */}
       <Box
         sx={{
-          p: 3,
+          p: isCollapsed ? 1.5 : 3,
           display: 'flex',
           alignItems: 'center',
+          justifyContent: isCollapsed ? 'center' : 'flex-start',
           gap: 2,
-          // borderBottom: '1px solid rgba(255,255,255,0.05)',
           position: 'relative',
           zIndex: 1,
+          transition: 'all 0.3s ease',
         }}
       >
         <Box
@@ -110,24 +111,28 @@ const SidebarDrawer = ({ isMobile, setMobileOpen, handleProfileMenuClose }) => {
         >
           <Avatar
             sx={{
-              width: 48,
-              height: 48,
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              fontWeight: 'bold',
-              fontSize: '1.3rem',
+              width: isCollapsed ? 36 : 48,
+              height: isCollapsed ? 36 : 48,
+              background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-primaryDark, #4f46e5) 100%)',
               boxShadow: '0 8px 24px rgba(102, 126, 234, 0.4)',
+              transition: 'all 0.3s ease',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#ffffff',
             }}
           >
-            <MenuBookIcon sx={{ fontSize: 28 }} />
+            <MenuBookIcon sx={{ fontSize: isCollapsed ? 20 : 28 }} />
           </Avatar>
           <Box
             sx={{
               position: 'absolute',
-              width: 48,
-              height: 48,
+              width: isCollapsed ? 36 : 48,
+              height: isCollapsed ? 36 : 48,
               background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
               borderRadius: '50%',
               opacity: 0.3,
+              transition: 'all 0.3s ease',
               animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
               '@keyframes pulse': {
                 '0%, 100%': {
@@ -142,30 +147,32 @@ const SidebarDrawer = ({ isMobile, setMobileOpen, handleProfileMenuClose }) => {
             }}
           />
         </Box>
-        <Box>
-          <Typography
-            variant="h6"
-            sx={{
-              fontWeight: 800,
-              letterSpacing: 0.5,
-              color: 'var(--color-primary)',
-            }}
-          >
-            BookVerse
-          </Typography>
-          <Typography
-            variant="caption"
-            sx={{
-              opacity: 0.7,
-              fontWeight: 500,
-              letterSpacing: 1,
-              textTransform: 'uppercase',
-              color: 'var(--color-textSecondary)',
-            }}
-          >
-            Library Hub
-          </Typography>
-        </Box>
+        {!isCollapsed && (
+          <Box>
+            <Typography
+              variant="h6"
+              sx={{
+                fontWeight: 800,
+                letterSpacing: 0.5,
+                color: 'var(--color-primary)',
+              }}
+            >
+              BookVerse
+            </Typography>
+            <Typography
+              variant="caption"
+              sx={{
+                opacity: 0.7,
+                fontWeight: 500,
+                letterSpacing: 1,
+                textTransform: 'uppercase',
+                color: 'var(--color-textSecondary)',
+              }}
+            >
+              Library Hub
+            </Typography>
+          </Box>
+        )}
       </Box>
 
 
@@ -175,11 +182,12 @@ const SidebarDrawer = ({ isMobile, setMobileOpen, handleProfileMenuClose }) => {
       <List
         sx={{
           flex: 1,
-          px: 2,
+          px: isCollapsed ? 1 : 2,
           py: 2,
           position: 'relative',
           zIndex: 1,
           overflowY: 'auto',
+          transition: 'all 0.3s ease',
           // Hide scrollbar for Chrome, Safari and Opera
           '&::-webkit-scrollbar': {
             display: 'none',
@@ -195,13 +203,14 @@ const SidebarDrawer = ({ isMobile, setMobileOpen, handleProfileMenuClose }) => {
 
           return (
             <ListItem key={item.path} disablePadding sx={{ mb: 1 }}>
-              <Tooltip title={item.description} placement="right" arrow>
+              <Tooltip title={isCollapsed ? item.title : item.description} placement="right" arrow>
                 <ListItemButton
                   onClick={() => handleNavigation(item.path)}
                   sx={{
                     borderRadius: 2.5,
                     py: 1.5,
-                    px: 2,
+                    px: isCollapsed ? 1.5 : 2,
+                    justifyContent: isCollapsed ? 'center' : 'flex-start',
                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                     position: 'relative',
                     bgcolor: active
@@ -213,10 +222,10 @@ const SidebarDrawer = ({ isMobile, setMobileOpen, handleProfileMenuClose }) => {
                       bgcolor: active
                         ? 'var(--color-backgroundTertiary)'
                         : 'var(--color-cardHover)',
-                      transform: 'translateX(6px)',
+                      transform: isCollapsed ? 'none' : 'translateX(6px)',
                       border: '1px solid rgba(255,255,255,0.08)',
                     },
-                    '&::before': active
+                    '&::before': active && !isCollapsed
                       ? {
                         content: '""',
                         position: 'absolute',
@@ -234,9 +243,11 @@ const SidebarDrawer = ({ isMobile, setMobileOpen, handleProfileMenuClose }) => {
                 >
                   <ListItemIcon
                     sx={{
-                      minWidth: 48,
+                      minWidth: isCollapsed ? 0 : 48,
                       color: active ? 'var(--color-primary)' : 'var(--color-textSecondary)',
                       transition: 'all 0.3s ease',
+                      display: 'flex',
+                      justifyContent: 'center',
                     }}
                   >
                     {badgeCount > 0 ? (
@@ -259,15 +270,17 @@ const SidebarDrawer = ({ isMobile, setMobileOpen, handleProfileMenuClose }) => {
                       item.icon
                     )}
                   </ListItemIcon>
-                  <ListItemText
-                    primary={item.title}
-                    primaryTypographyProps={{
-                      fontWeight: active ? 700 : 500,
-                      fontSize: '0.95rem',
-                      color: active ? 'var(--color-primary)' : 'var(--color-textSecondary)',
-                    }}
-                  />
-                  {active && (
+                  {!isCollapsed && (
+                    <ListItemText
+                      primary={item.title}
+                      primaryTypographyProps={{
+                        fontWeight: active ? 700 : 500,
+                        fontSize: '0.95rem',
+                        color: active ? 'var(--color-primary)' : 'var(--color-textSecondary)',
+                      }}
+                    />
+                  )}
+                  {active && !isCollapsed && (
                     <Box
                       sx={{
                         width: 6,
@@ -288,105 +301,118 @@ const SidebarDrawer = ({ isMobile, setMobileOpen, handleProfileMenuClose }) => {
       <Divider sx={{ borderColor: 'rgba(255,255,255,0.05)', mx: 2 }} />
 
       {/* Secondary Items */}
-      <List sx={{ px: 2, py: 1.5, position: 'relative', zIndex: 1 }}>
+      <List sx={{ px: isCollapsed ? 1 : 2, py: 1.5, position: 'relative', zIndex: 1, transition: 'all 0.3s ease' }}>
         {secondaryItems.map((item) => {
           const active = isActive(item.path);
           return (
             <ListItem key={item.path} disablePadding sx={{ mb: 0.5 }}>
-              <ListItemButton
-                onClick={() => handleNavigation(item.path)}
-                sx={{
-                  borderRadius: 2,
-                  py: 1.25,
-                  px: 2,
-                  transition: 'all 0.3s ease',
-                  bgcolor: active ? 'var(--color-backgroundTertiary)' : 'transparent',
-                  border: active ? '1px solid var(--color-border)' : '1px solid transparent',
-                  '&:hover': {
-                    bgcolor: active
-                      ? 'var(--color-backgroundTertiary)'
-                      : 'var(--color-cardHover)',
-                    border: '1px solid rgba(255,255,255,0.08)',
-                  },
-                }}
-              >
-                <ListItemIcon
+              <Tooltip title={isCollapsed ? item.title : ""} placement="right" arrow>
+                <ListItemButton
+                  onClick={() => handleNavigation(item.path)}
                   sx={{
-                    minWidth: 42,
-                    color: active ? 'var(--color-primary)' : 'var(--color-textSecondary)',
+                    borderRadius: 2,
+                    py: 1.25,
+                    px: isCollapsed ? 1.5 : 2,
+                    justifyContent: isCollapsed ? 'center' : 'flex-start',
+                    transition: 'all 0.3s ease',
+                    bgcolor: active ? 'var(--color-backgroundTertiary)' : 'transparent',
+                    border: active ? '1px solid var(--color-border)' : '1px solid transparent',
+                    '&:hover': {
+                      bgcolor: active
+                        ? 'var(--color-backgroundTertiary)'
+                        : 'var(--color-cardHover)',
+                      border: '1px solid rgba(255,255,255,0.08)',
+                    },
                   }}
                 >
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText
-                  primary={item.title}
-                  primaryTypographyProps={{
-                    fontWeight: active ? 600 : 500,
-                    fontSize: '0.9rem',
-                    color: active ? 'var(--color-primary)' : 'var(--color-textSecondary)',
-                  }}
-                />
-              </ListItemButton>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: isCollapsed ? 0 : 42,
+                      color: active ? 'var(--color-primary)' : 'var(--color-textSecondary)',
+                      display: 'flex',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {item.icon}
+                  </ListItemIcon>
+                  {!isCollapsed && (
+                    <ListItemText
+                      primary={item.title}
+                      primaryTypographyProps={{
+                        fontWeight: active ? 600 : 500,
+                        fontSize: '0.9rem',
+                        color: active ? 'var(--color-primary)' : 'var(--color-textSecondary)',
+                      }}
+                    />
+                  )}
+                </ListItemButton>
+              </Tooltip>
             </ListItem>
           );
         })}
       </List>
 
       {/* Logout Button */}
-      <Box sx={{ p: 2, position: 'relative', zIndex: 1 }}>
-        <ListItemButton
-          onClick={handleLogout}
-          sx={{
-            borderRadius: 2.5,
-            py: 1.5,
-            px: 2,
-            background: 'var(--color-backgroundSecondary)',
-            border: '1px solid var(--color-border)',
-            transition: 'all 0.3s ease',
-            '&:hover': {
-              background: 'var(--color-backgroundTertiary)',
+      <Box sx={{ p: isCollapsed ? 1 : 2, position: 'relative', zIndex: 1, transition: 'all 0.3s ease' }}>
+        <Tooltip title={isCollapsed ? "Logout" : ""} placement="right" arrow>
+          <ListItemButton
+            onClick={handleLogout}
+            sx={{
+              borderRadius: 2.5,
+              py: 1.5,
+              px: isCollapsed ? 1.5 : 2,
+              justifyContent: isCollapsed ? 'center' : 'flex-start',
+              background: 'var(--color-backgroundSecondary)',
               border: '1px solid var(--color-border)',
-              transform: 'translateY(-2px)',
-              boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
-            },
-          }}
-        >
-          <ListItemIcon sx={{ minWidth: 42, color: 'var(--color-error)' }}>
-            <LogoutIcon />
-          </ListItemIcon>
-          <ListItemText
-            primary="Logout"
-            primaryTypographyProps={{
-              fontWeight: 600,
-              fontSize: '0.95rem',
-              color: 'var(--color-textSecondary)',
+              transition: 'all 0.3s ease',
+              '&:hover': {
+                background: 'var(--color-backgroundTertiary)',
+                border: '1px solid var(--color-border)',
+                transform: isCollapsed ? 'none' : 'translateY(-2px)',
+                boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
+              },
             }}
-          />
-        </ListItemButton>
+          >
+            <ListItemIcon sx={{ minWidth: isCollapsed ? 0 : 42, color: 'var(--color-error)', display: 'flex', justifyContent: 'center' }}>
+              <LogoutIcon />
+            </ListItemIcon>
+            {!isCollapsed && (
+              <ListItemText
+                primary="Logout"
+                primaryTypographyProps={{
+                  fontWeight: 600,
+                  fontSize: '0.95rem',
+                  color: 'var(--color-textSecondary)',
+                }}
+              />
+            )}
+          </ListItemButton>
+        </Tooltip>
       </Box>
 
       {/* Bottom Branding */}
-      <Box
-        sx={{
-          p: 2,
-          textAlign: 'center',
-          // borderTop: '1px solid rgba(255,255,255,0.05)',
-          position: 'relative',
-          zIndex: 1,
-        }}
-      >
-        <Typography
-          variant="caption"
+      {!isCollapsed && (
+        <Box
           sx={{
-            opacity: 0.4,
-            fontSize: '0.7rem',
-            fontWeight: 500,
-            letterSpacing: 0.5,
+            p: 2,
+            textAlign: 'center',
+            position: 'relative',
+            zIndex: 1,
           }}
         >
-          © 2026 ZoshBook. All rights reserved.
-        </Typography>
-      </Box>
+          <Typography
+            variant="caption"
+            sx={{
+              opacity: 0.4,
+              fontSize: '0.7rem',
+              fontWeight: 500,
+              letterSpacing: 0.5,
+            }}
+          >
+            © 2026 BookVerse. All rights reserved.
+          </Typography>
+        </Box>
+      )}
     </Box>
   );
 };

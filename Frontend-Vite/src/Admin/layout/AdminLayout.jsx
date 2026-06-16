@@ -132,9 +132,11 @@ export default function AdminLayout() {
   const { user } = useSelector((state) => state.auth);
 
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [notificationAnchorEl, setNotificationAnchorEl] = useState(null);
   const [subscriptionsOpen, setSubscriptionsOpen] = useState(true);
+  const currentDrawerWidth = isCollapsed ? 72 : drawerWidth;
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -216,12 +218,14 @@ export default function AdminLayout() {
       {/* Logo Section with Animation */}
       <Box
         sx={{
-          p: 3,
+          p: isCollapsed ? 1.5 : 3,
           display: 'flex',
           alignItems: 'center',
+          justifyContent: isCollapsed ? 'center' : 'flex-start',
           gap: 2,
           position: 'relative',
           zIndex: 1,
+          transition: 'all 0.3s ease',
         }}
       >
         <Box
@@ -234,24 +238,26 @@ export default function AdminLayout() {
         >
           <Avatar
             sx={{
-              width: 48,
-              height: 48,
+              width: isCollapsed ? 36 : 48,
+              height: isCollapsed ? 36 : 48,
               background: 'linear-gradient(135deg, #dc2626 0%, #991b1b 100%)',
               fontWeight: 'bold',
-              fontSize: '1.3rem',
+              fontSize: isCollapsed ? '1rem' : '1.3rem',
               boxShadow: '0 8px 24px rgba(220, 38, 38, 0.4)',
+              transition: 'all 0.3s ease',
             }}
           >
-            <ShieldIcon sx={{ fontSize: 28 }} />
+            <ShieldIcon sx={{ fontSize: isCollapsed ? 20 : 28 }} />
           </Avatar>
           <Box
             sx={{
               position: 'absolute',
-              width: 48,
-              height: 48,
+              width: isCollapsed ? 36 : 48,
+              height: isCollapsed ? 36 : 48,
               background: 'linear-gradient(135deg, #dc2626 0%, #991b1b 100%)',
               borderRadius: '50%',
               opacity: 0.3,
+              transition: 'all 0.3s ease',
               animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
               '@keyframes pulse': {
                 '0%, 100%': {
@@ -266,30 +272,32 @@ export default function AdminLayout() {
             }}
           />
         </Box>
-        <Box>
-          <Typography
-            variant="h6"
-            sx={{
-              fontWeight: 800,
-              letterSpacing: 0.5,
-              color: 'var(--color-primary)',
-            }}
-          >
-            Admin Panel
-          </Typography>
-          <Typography
-            variant="caption"
-            sx={{
-              opacity: 0.7,
-              fontWeight: 500,
-              letterSpacing: 1,
-              textTransform: 'uppercase',
-              color: 'var(--color-textSecondary)',
-            }}
-          >
-            Control Center
-          </Typography>
-        </Box>
+        {!isCollapsed && (
+          <Box>
+            <Typography
+              variant="h6"
+              sx={{
+                fontWeight: 800,
+                letterSpacing: 0.5,
+                color: 'var(--color-primary)',
+              }}
+            >
+              Admin Panel
+            </Typography>
+            <Typography
+              variant="caption"
+              sx={{
+                opacity: 0.7,
+                fontWeight: 500,
+                letterSpacing: 1,
+                textTransform: 'uppercase',
+                color: 'var(--color-textSecondary)',
+              }}
+            >
+              Control Center
+            </Typography>
+          </Box>
+        )}
       </Box>
 
       {/* Admin Info Card */}
@@ -406,11 +414,12 @@ export default function AdminLayout() {
       <List
         sx={{
           flex: 1,
-          px: 2,
+          px: isCollapsed ? 1 : 2,
           py: 2,
           overflowY: 'auto',
           position: 'relative',
           zIndex: 1,
+          transition: 'all 0.3s ease',
           // Hide scrollbar for Chrome, Safari and Opera
           '&::-webkit-scrollbar': {
             display: 'none',
@@ -425,42 +434,52 @@ export default function AdminLayout() {
             return (
               <React.Fragment key={item.title}>
                 <ListItem disablePadding sx={{ mb: 1 }}>
-                  <Tooltip title={item.description} placement="right" arrow>
+                  <Tooltip title={isCollapsed ? item.title : item.description} placement="right" arrow>
                     <ListItemButton
-                      onClick={() => setSubscriptionsOpen(!subscriptionsOpen)}
+                      onClick={() => {
+                        if (isCollapsed) {
+                          setIsCollapsed(false);
+                          setSubscriptionsOpen(true);
+                        } else {
+                          setSubscriptionsOpen(!subscriptionsOpen);
+                        }
+                      }}
                       sx={{
                         borderRadius: 2.5,
                         py: 1.5,
-                        px: 2,
+                        px: isCollapsed ? 1.5 : 2,
+                        justifyContent: isCollapsed ? 'center' : 'flex-start',
                         transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                         border: '1px solid transparent',
                         '&:hover': {
                           bgcolor: 'rgba(255,255,255,0.05)',
-                          transform: 'translateX(6px)',
+                          transform: isCollapsed ? 'none' : 'translateX(6px)',
                           border: '1px solid rgba(255,255,255,0.08)',
                         },
                       }}
                     >
-                      <ListItemIcon sx={{ minWidth: 48, color: 'var(--color-textSecondary)' }}>
+                      <ListItemIcon sx={{ minWidth: isCollapsed ? 0 : 48, color: 'var(--color-textSecondary)', display: 'flex', justifyContent: 'center' }}>
                         {item.icon}
                       </ListItemIcon>
-                      <ListItemText
-                        primary={item.title}
-                        primaryTypographyProps={{
-                          fontWeight: 500,
-                          fontSize: '0.95rem',
-                          color: 'var(--color-textSecondary)',
-                        }}
-                      />
-                      {subscriptionsOpen ? (
+                      {!isCollapsed && (
+                        <ListItemText
+                          primary={item.title}
+                          primaryTypographyProps={{
+                            fontWeight: 500,
+                            fontSize: '0.95rem',
+                            color: 'var(--color-textSecondary)',
+                          }}
+                        />
+                      )}
+                      {!isCollapsed && (subscriptionsOpen ? (
                         <ExpandLess sx={{ color: 'var(--color-textSecondary)' }} />
                       ) : (
                         <ExpandMore sx={{ color: 'var(--color-textSecondary)' }} />
-                      )}
+                      ))}
                     </ListItemButton>
                   </Tooltip>
                 </ListItem>
-                <Collapse in={subscriptionsOpen} timeout="auto" unmountOnExit>
+                <Collapse in={subscriptionsOpen && !isCollapsed} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     {item.children.map((child) => {
                       const active = isActive(child.path);
@@ -509,13 +528,14 @@ export default function AdminLayout() {
           const active = isActive(item.path);
           return (
             <ListItem key={item.path} disablePadding sx={{ mb: 1 }}>
-              <Tooltip title={item.description} placement="right" arrow>
+              <Tooltip title={isCollapsed ? item.title : item.description} placement="right" arrow>
                 <ListItemButton
                   onClick={() => handleNavigation(item.path)}
                   sx={{
                     borderRadius: 2.5,
                     py: 1.5,
-                    px: 2,
+                    px: isCollapsed ? 1.5 : 2,
+                    justifyContent: isCollapsed ? 'center' : 'flex-start',
                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                     position: 'relative',
                     bgcolor: active ? 'var(--color-backgroundTertiary)' : 'transparent',
@@ -525,10 +545,10 @@ export default function AdminLayout() {
                       bgcolor: active
                         ? 'var(--color-backgroundTertiary)'
                         : 'var(--color-cardHover)',
-                      transform: 'translateX(6px)',
+                      transform: isCollapsed ? 'none' : 'translateX(6px)',
                       border: '1px solid rgba(255,255,255,0.08)',
                     },
-                    '&::before': active
+                    '&::before': active && !isCollapsed
                       ? {
                         content: '""',
                         position: 'absolute',
@@ -546,22 +566,26 @@ export default function AdminLayout() {
                 >
                   <ListItemIcon
                     sx={{
-                      minWidth: 48,
+                      minWidth: isCollapsed ? 0 : 48,
                       color: active ? 'var(--color-primary)' : 'var(--color-textSecondary)',
                       transition: 'all 0.3s ease',
+                      display: 'flex',
+                      justifyContent: 'center',
                     }}
                   >
                     {item.icon}
                   </ListItemIcon>
-                  <ListItemText
-                    primary={item.title}
-                    primaryTypographyProps={{
-                      fontWeight: active ? 700 : 500,
-                      fontSize: '0.95rem',
-                      color: active ? 'var(--color-primary)' : 'var(--color-textSecondary)',
-                    }}
-                  />
-                  {active && (
+                  {!isCollapsed && (
+                    <ListItemText
+                      primary={item.title}
+                      primaryTypographyProps={{
+                        fontWeight: active ? 700 : 500,
+                        fontSize: '0.95rem',
+                        color: active ? 'var(--color-primary)' : 'var(--color-textSecondary)',
+                      }}
+                    />
+                  )}
+                  {active && !isCollapsed && (
                     <Box
                       sx={{
                         width: 6,
@@ -582,60 +606,67 @@ export default function AdminLayout() {
       <Divider sx={{ borderColor: 'rgba(255,255,255,0.05)', mx: 2 }} />
 
       {/* Logout Button */}
-      <Box sx={{ p: 2, position: 'relative', zIndex: 1 }}>
-        <ListItemButton
-          onClick={handleLogout}
-          sx={{
-            borderRadius: 2.5,
-            py: 1.5,
-            px: 2,
-            background: 'var(--color-backgroundSecondary)',
-            border: '1px solid var(--color-border)',
-            transition: 'all 0.3s ease',
-            '&:hover': {
-              background: 'var(--color-backgroundTertiary)',
+      <Box sx={{ p: isCollapsed ? 1 : 2, position: 'relative', zIndex: 1, transition: 'all 0.3s ease' }}>
+        <Tooltip title={isCollapsed ? "Logout" : ""} placement="right" arrow>
+          <ListItemButton
+            onClick={handleLogout}
+            sx={{
+              borderRadius: 2.5,
+              py: 1.5,
+              px: isCollapsed ? 1.5 : 2,
+              justifyContent: isCollapsed ? 'center' : 'flex-start',
+              background: 'var(--color-backgroundSecondary)',
               border: '1px solid var(--color-border)',
-              transform: 'translateY(-2px)',
-              boxShadow: '0 8px 24px rgba(0,0,0, 0.1)',
-            },
-          }}
-        >
-          <ListItemIcon sx={{ minWidth: 42, color: 'var(--color-error)' }}>
-            <LogoutIcon />
-          </ListItemIcon>
-          <ListItemText
-            primary="Logout"
-            primaryTypographyProps={{
-              fontWeight: 600,
-              fontSize: '0.95rem',
-              color: 'var(--color-error)',
+              transition: 'all 0.3s ease',
+              '&:hover': {
+                background: 'var(--color-backgroundTertiary)',
+                border: '1px solid var(--color-border)',
+                transform: isCollapsed ? 'none' : 'translateY(-2px)',
+                boxShadow: '0 8px 24px rgba(0,0,0, 0.1)',
+              },
             }}
-          />
-        </ListItemButton>
+          >
+            <ListItemIcon sx={{ minWidth: isCollapsed ? 0 : 42, color: 'var(--color-error)', display: 'flex', justifyContent: 'center' }}>
+              <LogoutIcon />
+            </ListItemIcon>
+            {!isCollapsed && (
+              <ListItemText
+                primary="Logout"
+                primaryTypographyProps={{
+                  fontWeight: 600,
+                  fontSize: '0.95rem',
+                  color: 'var(--color-error)',
+                }}
+              />
+            )}
+          </ListItemButton>
+        </Tooltip>
       </Box>
 
       {/* Bottom Branding */}
-      <Box
-        sx={{
-          p: 2,
-          textAlign: 'center',
-          position: 'relative',
-          zIndex: 1,
-        }}
-      >
-        <Typography
-          variant="caption"
+      {!isCollapsed && (
+        <Box
           sx={{
-            opacity: 0.4,
-            fontSize: '0.7rem',
-            fontWeight: 500,
-            letterSpacing: 0.5,
-            color: 'var(--color-textSecondary)'
+            p: 2,
+            textAlign: 'center',
+            position: 'relative',
+            zIndex: 1,
           }}
         >
-          © 2025 Admin Panel. Secured.
-        </Typography>
-      </Box>
+          <Typography
+            variant="caption"
+            sx={{
+              opacity: 0.4,
+              fontSize: '0.7rem',
+              fontWeight: 500,
+              letterSpacing: 0.5,
+              color: 'var(--color-textSecondary)'
+            }}
+          >
+            © 2025 Admin Panel. Secured.
+          </Typography>
+        </Box>
+      )}
     </Box>
   );
 
@@ -645,20 +676,25 @@ export default function AdminLayout() {
       <AppBar
         position="fixed"
         sx={{
-          width: { md: `calc(100% - ${drawerWidth}px)` },
-          ml: { md: `${drawerWidth}px` },
+          width: { md: `calc(100% - ${currentDrawerWidth}px)` },
+          ml: { md: `${currentDrawerWidth}px` },
           bgcolor: 'var(--color-card)',
           color: 'var(--color-textPrimary)',
           borderBottom: '1px solid var(--color-border)',
           boxShadow: 'none',
+          transition: (theme) =>
+            theme.transitions.create(['width', 'margin'], {
+              easing: theme.transitions.easing.sharp,
+              duration: theme.transitions.duration.enteringScreen,
+            }),
         }}
       >
         <Toolbar>
           <IconButton
             color="inherit"
             edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { md: 'none' } }}
+            onClick={isMobile ? handleDrawerToggle : () => setIsCollapsed(!isCollapsed)}
+            sx={{ mr: 2 }}
           >
             <MenuIcon />
           </IconButton>
@@ -814,7 +850,14 @@ export default function AdminLayout() {
       </Menu>
 
       {/* Drawer */}
-      <Box component="nav" sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}>
+      <Box
+        component="nav"
+        sx={{
+          width: { md: currentDrawerWidth },
+          flexShrink: { md: 0 },
+          transition: 'width 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+        }}
+      >
         <Drawer
           variant="temporary"
           open={mobileOpen}
@@ -838,8 +881,10 @@ export default function AdminLayout() {
             display: { xs: 'none', md: 'block' },
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
-              width: drawerWidth,
+              width: currentDrawerWidth,
               border: 'none',
+              transition: 'width 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              overflowX: 'hidden',
             },
           }}
           open
@@ -853,8 +898,13 @@ export default function AdminLayout() {
         component="main"
         sx={{
           flexGrow: 1,
-          width: { md: `calc(100% - ${drawerWidth}px)` },
+          width: { md: `calc(100% - ${currentDrawerWidth}px)` },
           minHeight: '100vh',
+          transition: (theme) =>
+            theme.transitions.create(['width', 'margin'], {
+              easing: theme.transitions.easing.sharp,
+              duration: theme.transitions.duration.enteringScreen,
+            }),
         }}
       >
         <Toolbar />

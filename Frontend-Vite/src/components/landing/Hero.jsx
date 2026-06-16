@@ -6,107 +6,108 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
-      </div>
-
+    <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Content */}
-          <div className="text-center lg:text-left animate-fade-in-up">
+          <div className="text-center lg:text-left">
             {/* Badge */}
-            <div className="inline-flex items-center space-x-2 bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium mb-6 animate-fade-in">
+            <div className="inline-flex items-center space-x-2 bg-indigo-50 text-indigo-700 border border-indigo-100 px-4 py-2 rounded-full text-sm font-medium mb-6">
               <AutoAwesomeIcon sx={{ fontSize: 16 }} />
               <span>Welcome to BookVerse</span>
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6 animate-fade-in-up animation-delay-200">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight mb-6">
               Your Gateway to{' '}
-              <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="text-indigo-600">
                 Endless Knowledge
               </span>
             </h1>
 
             {/* Subheading */}
-            <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl animate-fade-in-up animation-delay-400">
+            <p className="text-lg sm:text-xl text-slate-600 mb-8 max-w-2xl">
               Discover, reserve, and enjoy thousands of books from our extensive collection.
               Join our community of readers and experience seamless library management.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up animation-delay-600">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link
                 to="/books"
-                className="group inline-flex items-center justify-center px-8 py-4 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                className="group inline-flex items-center justify-center px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl transition-all duration-200 shadow-md hover:shadow-lg"
               >
                 <span>Explore Books</span>
                 <ArrowForwardIcon className="ml-2 group-hover:translate-x-1 transition-transform" sx={{ fontSize: 20 }} />
               </Link>
               <Link
                 to="/login"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-indigo-600 font-semibold rounded-xl border-2 border-indigo-600 hover:bg-indigo-50 transition-all duration-200 shadow-md hover:shadow-lg"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-slate-700 font-semibold rounded-xl border border-slate-300 hover:bg-slate-50 transition-all duration-200 shadow-sm"
               >
-                <MenuBookIcon className="mr-2" sx={{ fontSize: 20 }} />
+                <MenuBookIcon className="mr-2 text-slate-500" sx={{ fontSize: 20 }} />
                 <span>Login</span>
               </Link>
             </div>
 
             {/* Trust Indicators */}
-            <div className="mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-8 text-sm text-gray-600 animate-fade-in animation-delay-800">
+            <div className="mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-8 text-sm text-slate-500">
               <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-indigo-600 rounded-full"></div>
                 <span>10,000+ Books</span>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-indigo-600 rounded-full"></div>
                 <span>5,000+ Members</span>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-indigo-600 rounded-full"></div>
                 <span>24/7 Access</span>
               </div>
             </div>
           </div>
 
           {/* Right Column - Illustration/Image */}
-          <div className="relative hidden lg:block animate-fade-in-scale animation-delay-400">
+          <div className="relative hidden lg:block">
             <div className="relative">
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -left-4 w-72 h-72 bg-indigo-200 rounded-3xl transform rotate-6 opacity-50"></div>
-              <div className="absolute -bottom-4 -right-4 w-72 h-72 bg-purple-200 rounded-3xl transform -rotate-6 opacity-50"></div>
+              {/* Subtle decorative background circle */}
+              <div className="absolute inset-0 bg-indigo-50 rounded-3xl transform rotate-3 scale-105 blur-sm"></div>
 
-              {/* Main illustration container */}
-              <div className="relative bg-white rounded-3xl shadow-2xl p-8 transform hover:scale-105 transition-transform duration-300">
-                <div className="space-y-4">
-                  {/* Book stack illustration using CSS */}
-                  <div className="flex justify-center items-end space-x-2 h-64">
-                    <div className="w-16 h-48 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-lg shadow-lg transform hover:-translate-y-2 transition-transform"></div>
-                    <div className="w-16 h-56 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg shadow-lg transform hover:-translate-y-2 transition-transform"></div>
-                    <div className="w-16 h-40 bg-gradient-to-br from-pink-400 to-pink-600 rounded-lg shadow-lg transform hover:-translate-y-2 transition-transform"></div>
-                    <div className="w-16 h-52 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg shadow-lg transform hover:-translate-y-2 transition-transform"></div>
+              {/* Main container */}
+              <div className="relative bg-white rounded-3xl shadow-xl p-8 border border-slate-200">
+                <div className="space-y-6">
+                  {/* Mock search bar */}
+                  <div className="flex items-center space-x-2 bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl">
+                    <div className="w-4 h-4 rounded-full border-2 border-slate-400 flex-shrink-0"></div>
+                    <div className="h-4 bg-slate-200 rounded w-40"></div>
+                  </div>
+                  
+                  {/* Mock book rows */}
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-4 p-3 bg-slate-50/50 rounded-xl border border-slate-100">
+                      <div className="w-10 h-14 bg-indigo-100 rounded-md flex-shrink-0"></div>
+                      <div className="flex-1 space-y-2">
+                        <div className="h-4 bg-slate-300 rounded w-3/4"></div>
+                        <div className="h-3 bg-slate-200 rounded w-1/2"></div>
+                      </div>
+                      <div className="h-6 px-2.5 bg-emerald-100 text-emerald-800 text-xs font-semibold rounded-full flex items-center">Available</div>
+                    </div>
+                    <div className="flex items-center space-x-4 p-3 bg-slate-50/50 rounded-xl border border-slate-100">
+                      <div className="w-10 h-14 bg-pink-100 rounded-md flex-shrink-0"></div>
+                      <div className="flex-1 space-y-2">
+                        <div className="h-4 bg-slate-300 rounded w-2/3"></div>
+                        <div className="h-3 bg-slate-200 rounded w-1/3"></div>
+                      </div>
+                      <div className="h-6 px-2.5 bg-amber-100 text-amber-800 text-xs font-semibold rounded-full flex items-center">Reserved</div>
+                    </div>
                   </div>
 
-                  {/* Floating badge */}
-                  <div className="absolute top-4 right-4 bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-semibold shadow-lg animate-bounce">
-                    📚 New Arrivals
+                  {/* Clean static badge */}
+                  <div className="bg-indigo-50 text-indigo-800 px-4 py-2 rounded-xl text-sm font-semibold text-center border border-indigo-100">
+                    📚 Discover 10k+ Volumes
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-fade-in animation-delay-1000">
-        <div className="animate-bounce">
-          <div className="w-6 h-10 border-2 border-indigo-600 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-indigo-600 rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
       </div>

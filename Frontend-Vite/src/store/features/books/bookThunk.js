@@ -228,3 +228,23 @@ export const fetchBookStats = createAsyncThunk(
     }
   }
 );
+
+/**
+ * Get AI-powered book recommendations using Gemini
+ * GET /api/books/recommendations
+ */
+export const fetchAIRecommendations = createAsyncThunk(
+  'books/fetchAIRecommendations',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await api.get(`${API_URL}/recommendations`, {
+        headers: getHeaders(),
+      });
+      console.log("ai recommendations -- ", response.data);
+      return response.data;
+    } catch (error) {
+      console.log("ai recommendations error -- ", error);
+      return rejectWithValue(error.response?.data?.message || 'Failed to fetch AI recommendations');
+    }
+  }
+);

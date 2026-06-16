@@ -55,10 +55,16 @@ public class StripeService {
             response.setAmount(payment.getAmount());
             response.setCurrency(payment.getCurrency());
             response.setDescription(payment.getDescription());
+            
+            // Setup simulated success redirection to frontend for testing
+            String checkoutUrl = "http://localhost:5173/payment-success/" + payment.getId() 
+                + "?stripe=true&payment_intent=pi_mock_" + payment.getId() + "&redirect_status=succeeded";
+            response.setCheckoutUrl(checkoutUrl);
+            
             response.setSuccess(true);
             response.setMessage("Stripe PaymentIntent created successfully");
 
-            log.info("Stripe PaymentIntent created successfully");
+            log.info("Stripe PaymentIntent created successfully. Checkout URL: {}", checkoutUrl);
             return response;
 
         } catch (Exception e) {

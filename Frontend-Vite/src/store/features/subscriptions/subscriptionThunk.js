@@ -18,7 +18,6 @@ export const subscribe = createAsyncThunk(
         headers: getHeaders(),
       });
       console.log("subscribe response", response)
-      window.location.href = response.data?.checkoutUrl; // Redirect to payment URL
       return response.data;
     } catch (error) {
       console.log("error ",error)

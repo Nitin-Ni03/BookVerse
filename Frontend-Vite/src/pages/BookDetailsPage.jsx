@@ -380,9 +380,9 @@ const BookDetailsPage = () => {
 
   return (
     <Layout>
-      <div className="bg-gradient-to-br from-indigo-50 via-white to-purple-50 min-h-screen">
+      <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-textPrimary)] transition-colors duration-300">
         {/* Header with Back Button */}
-        <div className="bg-white shadow-sm border-b border-gray-200">
+        <div className="bg-[var(--color-card)] shadow-sm border-b border-[var(--color-border)]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <Button
               startIcon={<ArrowBackIcon />}
@@ -396,7 +396,7 @@ const BookDetailsPage = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Book Overview Section */}
-          <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 animate-fade-in-up">
+          <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-2xl shadow-xl p-8 mb-8 animate-fade-in-up">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Book Cover */}
               <div className="lg:col-span-1">
@@ -548,10 +548,10 @@ const BookDetailsPage = () => {
               <div className="lg:col-span-2">
                 {/* Title and Author */}
                 <div className="mb-6">
-                  <h1 className="text-4xl font-bold text-gray-900 mb-3">
+                  <h1 className="text-4xl font-bold text-[var(--color-textPrimary)] mb-3">
                     {book.title}
                   </h1>
-                  <div className="flex items-center space-x-2 text-lg text-gray-600 mb-4">
+                  <div className="flex items-center space-x-2 text-lg text-[var(--color-textSecondary)] mb-4">
                     <PersonIcon sx={{ fontSize: 20 }} />
                     <span>by {book.author}</span>
                   </div>
@@ -564,11 +564,11 @@ const BookDetailsPage = () => {
                         precision={0.1}
                         readOnly
                       />
-                      <span className="text-lg font-semibold text-gray-900">
+                      <span className="text-lg font-semibold text-[var(--color-textPrimary)]">
                         {averageRating}
                       </span>
                     </div>
-                    <span className="text-gray-600">
+                    <span className="text-[var(--color-textSecondary)]">
                       ({ratingStatistics?.totalReviews || reviews?.length || 0}{" "}
                       reviews)
                     </span>
@@ -602,8 +602,8 @@ const BookDetailsPage = () => {
                     <div className="flex items-start space-x-3">
                       <CategoryIcon className="text-indigo-600 mt-1" />
                       <div>
-                        <p className="text-sm text-gray-600">Genre</p>
-                        <p className="font-semibold text-gray-900">
+                        <p className="text-sm text-[var(--color-textSecondary)]">Genre</p>
+                        <p className="font-semibold text-[var(--color-textPrimary)]">
                           {book.genreName || "General"}
                         </p>
                       </div>
@@ -612,8 +612,8 @@ const BookDetailsPage = () => {
                     <div className="flex items-start space-x-3">
                       <CalendarTodayIcon className="text-indigo-600 mt-1" />
                       <div>
-                        <p className="text-sm text-gray-600">ISBN</p>
-                        <p className="font-semibold text-gray-900">
+                        <p className="text-sm text-[var(--color-textSecondary)]">ISBN</p>
+                        <p className="font-semibold text-[var(--color-textPrimary)]">
                           {book.isbn}
                         </p>
                       </div>
@@ -624,8 +624,8 @@ const BookDetailsPage = () => {
                     <div className="flex items-start space-x-3">
                       <LocalLibraryIcon className="text-indigo-600 mt-1" />
                       <div>
-                        <p className="text-sm text-gray-600">Publisher</p>
-                        <p className="font-semibold text-gray-900">
+                        <p className="text-sm text-[var(--color-textSecondary)]">Publisher</p>
+                        <p className="font-semibold text-[var(--color-textPrimary)]">
                           {book.publisher || "N/A"}
                         </p>
                       </div>
@@ -634,10 +634,10 @@ const BookDetailsPage = () => {
                     <div className="flex items-start space-x-3">
                       <CalendarTodayIcon className="text-indigo-600 mt-1" />
                       <div>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-[var(--color-textSecondary)]">
                           Publication Date
                         </p>
-                        <p className="font-semibold text-gray-900">
+                        <p className="font-semibold text-[var(--color-textPrimary)]">
                           {book.publicationDate
                             ? new Date(
                                 book.publicationDate
@@ -653,10 +653,10 @@ const BookDetailsPage = () => {
 
                 {/* Description */}
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  <h3 className="text-xl font-bold text-[var(--color-textPrimary)] mb-3">
                     About This Book
                   </h3>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-[var(--color-textSecondary)] leading-relaxed">
                     {book.description ||
                       "No description available for this book."}
                   </p>
@@ -666,7 +666,7 @@ const BookDetailsPage = () => {
           </div>
 
           {/* Tabs Section */}
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden animate-fade-in-up animation-delay-200">
+          <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-2xl shadow-xl overflow-hidden animate-fade-in-up animation-delay-200">
             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
               <Tabs
                 value={activeTab}
@@ -696,10 +696,10 @@ const BookDetailsPage = () => {
               <div className="p-8">
                 <div className="mb-6 flex items-center justify-between">
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    <h3 className="text-2xl font-bold text-[var(--color-textPrimary)] mb-2">
                       Reader Reviews
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-[var(--color-textSecondary)]">
                       See what others are saying about this book
                     </p>
                   </div>
@@ -731,9 +731,9 @@ const BookDetailsPage = () => {
                 {/* User's own review (if exists) */}
                 {userReview && (
                   <div className="mb-6">
-                    <div className="bg-indigo-50 border-2 border-indigo-200 rounded-xl p-6">
+                    <div className="bg-[rgba(99,102,241,0.1)] border-2 border-[rgba(99,102,241,0.2)] rounded-xl p-6">
                       <div className="flex items-center justify-between mb-3">
-                        <h4 className="font-bold text-indigo-900 flex items-center space-x-2">
+                        <h4 className="font-bold text-indigo-500 flex items-center space-x-2">
                           <StarIcon sx={{ color: "#4F46E5" }} />
                           <span>Your Review</span>
                         </h4>
@@ -768,7 +768,7 @@ const BookDetailsPage = () => {
                           size="small"
                         />
                       </div>
-                      <p className="text-gray-800 leading-relaxed">
+                      <p className="text-[var(--color-textPrimary)] leading-relaxed">
                         {userReview.reviewText}
                       </p>
                       <p className="text-sm text-indigo-600 mt-3">
@@ -780,7 +780,7 @@ const BookDetailsPage = () => {
                 )}
 
                 <div className="mb-4">
-                  <h4 className="text-lg font-semibold text-gray-900">
+                  <h4 className="text-lg font-semibold text-[var(--color-textPrimary)]">
                     Community Reviews (
                     {ratingStatistics?.totalReviews || reviews?.length || 0})
                   </h4>
@@ -811,7 +811,7 @@ const BookDetailsPage = () => {
                       {reviews.map((review) => (
                         <div
                           key={review.id}
-                          className="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow"
+                          className="border border-[var(--color-border)] bg-[var(--color-card)] rounded-xl p-6 hover:shadow-md transition-shadow"
                         >
                           <div className="flex items-start space-x-4">
                             <Avatar
@@ -828,10 +828,10 @@ const BookDetailsPage = () => {
 
                             <div className="flex-1">
                               <div className="flex items-center justify-between mb-2">
-                                <h4 className="font-semibold text-gray-900">
+                                <h4 className="font-semibold text-[var(--color-textPrimary)]">
                                   {review.userName || "Anonymous User"}
                                 </h4>
-                                <span className="text-sm text-gray-600">
+                                <span className="text-sm text-[var(--color-textSecondary)]">
                                   {new Date(
                                     review.createdAt
                                   ).toLocaleDateString()}
@@ -846,7 +846,7 @@ const BookDetailsPage = () => {
                                 />
                               </div>
 
-                              <p className="text-gray-700 leading-relaxed">
+                              <p className="text-[var(--color-textSecondary)] leading-relaxed">
                                 {review.reviewText}
                               </p>
                             </div>
@@ -874,7 +874,7 @@ const BookDetailsPage = () => {
                   </>
                 ) : (
                   <div className="text-center py-12">
-                    <p className="text-gray-600">
+                    <p className="text-[var(--color-textSecondary)]">
                       No reviews yet. Be the first to review this book!
                     </p>
                   </div>
@@ -886,10 +886,10 @@ const BookDetailsPage = () => {
             {activeTab === 1 && (
               <div className="p-8">
                 <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  <h3 className="text-2xl font-bold text-[var(--color-textPrimary)] mb-2">
                     You Might Also Like
                   </h3>
-                  <p className="text-gray-600">Books from the same genre</p>
+                  <p className="text-[var(--color-textSecondary)]">Books from the same genre</p>
                 </div>
 
                 {loading ? (
@@ -936,10 +936,10 @@ const BookDetailsPage = () => {
                               </div>
                             )}
                           </div>
-                          <h4 className="font-semibold text-gray-900 line-clamp-2 group-hover:text-indigo-600 transition-colors">
+                          <h4 className="font-semibold text-[var(--color-textPrimary)] line-clamp-2 group-hover:text-indigo-600 transition-colors">
                             {relatedBook.title}
                           </h4>
-                          <p className="text-sm text-gray-600 line-clamp-1">
+                          <p className="text-sm text-[var(--color-textSecondary)] line-clamp-1">
                             {relatedBook.author}
                           </p>
                         </div>
@@ -948,9 +948,9 @@ const BookDetailsPage = () => {
                 ) : (
                   <div className="text-center py-12">
                     <LocalLibraryIcon
-                      sx={{ fontSize: 64, color: "#9CA3AF", mb: 2 }}
+                      sx={{ fontSize: 64, color: "var(--color-textSecondary)", mb: 2 }}
                     />
-                    <p className="text-gray-600">No related books found</p>
+                    <p className="text-[var(--color-textSecondary)]">No related books found</p>
                   </div>
                 )}
               </div>
@@ -960,19 +960,19 @@ const BookDetailsPage = () => {
             {activeTab === 2 && (
               <div className="p-8">
                 <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  <h3 className="text-2xl font-bold text-[var(--color-textPrimary)] mb-2">
                     Loan History
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-[var(--color-textSecondary)]">
                     Recent borrowing activity for this book
                   </p>
                 </div>
 
                 <div className="text-center py-12">
                   <LocalLibraryIcon
-                    sx={{ fontSize: 64, color: "#9CA3AF", mb: 2 }}
+                    sx={{ fontSize: 64, color: "var(--color-textSecondary)", mb: 2 }}
                   />
-                  <p className="text-gray-600">
+                  <p className="text-[var(--color-textSecondary)]">
                     Loan history is only visible to library staff
                   </p>
                 </div>

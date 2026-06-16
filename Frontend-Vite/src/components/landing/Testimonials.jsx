@@ -31,17 +31,17 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4">
             What Our Members{' '}
-            <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="text-indigo-600">
               Say
             </span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-slate-605 max-w-3xl mx-auto">
             Don't just take our word for it - hear from our community of passionate readers.
           </p>
         </div>
@@ -51,12 +51,11 @@ const Testimonials = () => {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:-translate-y-2 animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.1}s`, opacity: 0 }}
+              className="group relative bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300"
             >
               {/* Quote Icon */}
-              <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                <FormatQuoteIcon sx={{ fontSize: 64, color: '#4F46E5' }} />
+              <div className="absolute top-6 right-6 opacity-10 text-indigo-600">
+                <FormatQuoteIcon sx={{ fontSize: 64 }} />
               </div>
 
               {/* Rating */}
@@ -70,40 +69,37 @@ const Testimonials = () => {
               </div>
 
               {/* Testimonial Text */}
-              <p className="text-gray-700 mb-6 leading-relaxed relative z-10">
+              <p className="text-slate-600 mb-6 leading-relaxed relative z-10">
                 "{testimonial.text}"
               </p>
 
               {/* Author Info */}
               <div className="flex items-center space-x-4">
-                <div className={`w-12 h-12 rounded-full bg-gradient-to-br from-indigo-400 to-purple-600 flex items-center justify-center text-2xl shadow-md`}>
+                <div className="w-12 h-12 rounded-full bg-indigo-50 flex items-center justify-center text-2xl border border-indigo-100">
                   {testimonial.image}
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
-                  <p className="text-sm text-gray-600">{testimonial.role}</p>
+                  <h4 className="font-bold text-slate-900">{testimonial.name}</h4>
+                  <p className="text-sm text-slate-500">{testimonial.role}</p>
                 </div>
               </div>
-
-              {/* Hover Effect Border */}
-              <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
             </div>
           ))}
         </div>
 
         {/* CTA Section */}
-        <div className="mt-16 text-center bg-gradient-to-br from-indigo-50 to-purple-50 rounded-3xl p-12 shadow-lg animate-fade-in-up animation-delay-600">
-          <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+        <div className="mt-16 text-center bg-white border border-slate-200 rounded-3xl p-12 shadow-sm">
+          <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
             Join Our Community of Readers
           </h3>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-slate-600 mb-8 max-w-2xl mx-auto">
             Become a member today and start your reading journey with access to thousands of books and exclusive benefits.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+            <button className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl transition-all duration-200 shadow-sm hover:shadow-md">
               Start Free Trial
             </button>
-            <button className="px-8 py-4 bg-white text-indigo-600 font-semibold rounded-xl border-2 border-indigo-600 hover:bg-indigo-50 transition-all duration-200 shadow-md hover:shadow-lg">
+            <button className="px-8 py-4 bg-white text-slate-700 font-semibold rounded-xl border border-slate-300 hover:bg-slate-50 transition-all duration-200 shadow-sm hover:shadow-md">
               View Membership Plans
             </button>
           </div>

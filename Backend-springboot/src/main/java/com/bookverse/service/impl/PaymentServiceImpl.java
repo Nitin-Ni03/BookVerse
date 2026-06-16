@@ -138,49 +138,58 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public PaymentDTO verifyPayment(PaymentVerifyRequest request) throws PaymentException {
+        Payment payment = null;
 
+        // 1. Retrieve payment by requested paymentId
+        if (request.getPaymentId() != null) {
+            payment = paymentRepository.findById(request.getPaymentId())
+                .orElseThrow(() -> new PaymentException("Payment not found with ID: " + request.getPaymentId()));
+        }
 
+        // 2. Fallback: Parse from Razorpay details if it was Razorpay and ID is not passed
+        if (payment == null && request.getRazorpayPaymentId() != null) {
+            try {
+                JSONObject paymentDetails = razorpayService.fetchPaymentDetails(request.getRazorpayPaymentId());
+                if (paymentDetails != null && paymentDetails.has("notes")) {
+                    JSONObject notes = paymentDetails.getJSONObject("notes");
+                    if (notes.has("payment_id")) {
+                        Long paymentId = Long.parseLong(notes.optString("payment_id"));
+                        payment = paymentRepository.findById(paymentId)
+                            .orElseThrow(() -> new PaymentException("Payment not found with ID from Razorpay notes: " + paymentId));
+                    }
+                }
+            } catch (Exception e) {
+                log.warn("Could not retrieve payment ID from Razorpay notes fallback: {}", e.getMessage());
+            }
+        }
 
-        // gatway payment
-        JSONObject paymentDetails = razorpayService
-                .fetchPaymentDetails(request.getRazorpayPaymentId());
-
-        System.out.println("gatway payment details: " + paymentDetails);
-
-        long amount = paymentDetails.getLong("amount");
-
-
-        // Extract 'notes' object
-        JSONObject notes = paymentDetails.getJSONObject("notes");
-
-        // Access specific fields inside 'notes'
-
-        Long paymentId = Long.parseLong(notes.optString("payment_id"));
-
-
-        Payment payment = paymentRepository.findById(paymentId)
-            .orElseThrow(() -> new PaymentException("Payment not found with ID: " + paymentId));
+        if (payment == null) {
+            throw new PaymentException("Payment ID not provided or could not be determined");
+        }
 
         if (payment.getStatus() == PaymentStatus.SUCCESS) {
             log.warn("Payment already completed: {}", payment.getId());
             return paymentMapper.toDTO(payment);
         }
 
-        boolean isValid = razorpayService.isValidPayment(
-                request.getRazorpayPaymentId());
+        boolean isValid = false;
 
+        // 3. Verify according to the payment gateway
         if (payment.getGateway() == PaymentGateway.RAZORPAY) {
-
+            isValid = razorpayService.isValidPayment(request.getRazorpayPaymentId());
             if (isValid) {
                 payment.setGatewayPaymentId(request.getRazorpayPaymentId());
                 payment.setGatewayOrderId(request.getRazorpayOrderId());
                 payment.setGatewaySignature(request.getRazorpaySignature());
             }
         } else if (payment.getGateway() == PaymentGateway.STRIPE) {
-            isValid = stripeService.verifyPayment(request.getStripePaymentIntentId());
-
+            String stripeIntentId = request.getStripePaymentIntentId();
+            if (stripeIntentId == null || stripeIntentId.isEmpty()) {
+                stripeIntentId = payment.getTransactionId();
+            }
+            isValid = stripeService.verifyPayment(stripeIntentId);
             if (isValid) {
-                payment.setGatewayPaymentId(request.getStripePaymentIntentId());
+                payment.setGatewayPaymentId(stripeIntentId);
             }
         }
 
@@ -192,7 +201,7 @@ public class PaymentServiceImpl implements PaymentService {
             // Save payment first
             payment = paymentRepository.save(payment);
 
-            // Publish payment success event (instead of direct service calls)
+            // Publish payment success event
             publishPaymentSuccessEvent(payment);
         } else {
             payment.setStatus(PaymentStatus.FAILED);

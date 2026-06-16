@@ -1,11 +1,11 @@
-# 🏗️ Zosh Library - Frontend Architecture
+# 🏗️ BookVerse Library - Frontend Architecture
 
 ## 📐 System Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                        Zosh Library                          │
-│                    Frontend Application                       │
+│                        BookVerse Library                    │
+│                    Frontend Application                     │
 └─────────────────────────────────────────────────────────────┘
                               │
                               │
@@ -238,14 +238,14 @@ src/
 
 ```
 ┌────────────────────────────────────────┐
-│           Frontend Layer                │
+│           Frontend Layer               │
 ├────────────────────────────────────────┤
-│                                         │
+│                                        │
 │  ┌──────────────────────────────────┐ │
 │  │   React Components               │ │
 │  └─────────────┬────────────────────┘ │
-│                │                       │
-│                ▼                       │
+│                │                      │
+│                ▼                      │
 │  ┌──────────────────────────────────┐ │
 │  │   Redux Thunks                   │ │
 │  │   - authThunk.js                 │ │
@@ -255,8 +255,8 @@ src/
 │  │   - genreThunk.js                │ │
 │  │   - paymentThunk.js              │ │
 │  └─────────────┬────────────────────┘ │
-│                │                       │
-│                ▼                       │
+│                │                      │
+│                ▼                      │
 │  ┌──────────────────────────────────┐ │
 │  │   API Layer (Axios)              │ │
 │  │   - api.js (base config)         │ │
@@ -267,12 +267,12 @@ src/
                  │
                  ▼ HTTP Request
 ┌────────────────────────────────────────┐
-│         Backend Layer                   │
+│         Backend Layer                  │
 ├────────────────────────────────────────┤
 │   Spring Boot REST API                 │
 │   - localhost:8080/api                 │
-│                                         │
-│   Endpoints:                            │
+│                                        │
+│   Endpoints:                           │
 │   /auth/*                              │
 │   /books/*                             │
 │   /book-loans/*                        │
@@ -453,4 +453,4 @@ text-5xl   : 48px
 
 ---
 
-Built with ❤️ for Zosh Library
+Built with ❤️ for BookVerse Library

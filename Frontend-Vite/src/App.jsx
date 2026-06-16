@@ -59,7 +59,6 @@ function App() {
   const { auth } = useSelector((store) => store);
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     if (localStorage.getItem("jwt")) {
       dispatch(fetchCurrentUser());
@@ -170,10 +169,14 @@ function App() {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/notifications" element={<NotificationPage />} />
-            <Route path="/payment-success/:subscriptionId" element={<PaymentSuccess />} />
           </Route>
         )
       }
+
+      {/* Shared Standalone Routes */}
+      {isAuthenticated && (
+        <Route path="/payment-success/:subscriptionId" element={<PaymentSuccess />} />
+      )}
     </Routes >
 
   );

@@ -70,16 +70,16 @@ const SettingsPage = () => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-8">
+      <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-textPrimary)] py-8 transition-colors duration-300">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="mb-8 animate-fade-in-up">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+            <h1 className="text-4xl font-bold text-[var(--color-textPrimary)] mb-2">
               <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                 Settings
               </span>
             </h1>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-[var(--color-textSecondary)]">
               Manage your account preferences and settings
             </p>
           </div>
@@ -93,8 +93,8 @@ const SettingsPage = () => {
                     <NotificationsIcon sx={{ fontSize: 28, color: '#4F46E5' }} />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900">Notifications</h2>
-                    <p className="text-gray-600">Manage how you receive updates</p>
+                    <h2 className="text-2xl font-bold text-[var(--color-textPrimary)]">Notifications</h2>
+                    <p className="text-[var(--color-textSecondary)]">Manage how you receive updates</p>
                   </div>
                 </div>
 
@@ -112,8 +112,8 @@ const SettingsPage = () => {
                     }
                     label={
                       <div>
-                        <p className="font-medium text-gray-900">Email Notifications</p>
-                        <p className="text-sm text-gray-600">Receive notifications via email</p>
+                        <p className="font-medium text-[var(--color-textPrimary)]">Email Notifications</p>
+                        <p className="text-sm text-[var(--color-textSecondary)]">Receive notifications via email</p>
                       </div>
                     }
                   />
@@ -133,8 +133,8 @@ const SettingsPage = () => {
                     }
                     label={
                       <div>
-                        <p className="font-medium text-gray-900">Push Notifications</p>
-                        <p className="text-sm text-gray-600">Receive push notifications on your device</p>
+                        <p className="font-medium text-[var(--color-textPrimary)]">Push Notifications</p>
+                        <p className="text-sm text-[var(--color-textSecondary)]">Receive push notifications on your device</p>
                       </div>
                     }
                   />
@@ -154,8 +154,8 @@ const SettingsPage = () => {
                     }
                     label={
                       <div>
-                        <p className="font-medium text-gray-900">Book Reminders</p>
-                        <p className="text-sm text-gray-600">Reminders about borrowed books</p>
+                        <p className="font-medium text-[var(--color-textPrimary)]">Book Reminders</p>
+                        <p className="text-sm text-[var(--color-textSecondary)]">Reminders about borrowed books</p>
                       </div>
                     }
                   />
@@ -175,8 +175,8 @@ const SettingsPage = () => {
                     }
                     label={
                       <div>
-                        <p className="font-medium text-gray-900">Due Date Alerts</p>
-                        <p className="text-sm text-gray-600">Alerts when books are due soon</p>
+                        <p className="font-medium text-[var(--color-textPrimary)]">Due Date Alerts</p>
+                        <p className="text-sm text-[var(--color-textSecondary)]">Alerts when books are due soon</p>
                       </div>
                     }
                   />
@@ -196,8 +196,8 @@ const SettingsPage = () => {
                     }
                     label={
                       <div>
-                        <p className="font-medium text-gray-900">New Arrivals</p>
-                        <p className="text-sm text-gray-600">Notifications about new books</p>
+                        <p className="font-medium text-[var(--color-textPrimary)]">New Arrivals</p>
+                        <p className="text-sm text-[var(--color-textSecondary)]">Notifications about new books</p>
                       </div>
                     }
                   />
@@ -217,8 +217,8 @@ const SettingsPage = () => {
                     }
                     label={
                       <div>
-                        <p className="font-medium text-gray-900">Recommendations</p>
-                        <p className="text-sm text-gray-600">Personalized book recommendations</p>
+                        <p className="font-medium text-[var(--color-textPrimary)]">Recommendations</p>
+                        <p className="text-sm text-[var(--color-textSecondary)]">Personalized book recommendations</p>
                       </div>
                     }
                   />
@@ -238,8 +238,8 @@ const SettingsPage = () => {
                     }
                     label={
                       <div>
-                        <p className="font-medium text-gray-900">Marketing Emails</p>
-                        <p className="text-sm text-gray-600">Promotional offers and updates</p>
+                        <p className="font-medium text-[var(--color-textPrimary)]">Marketing Emails</p>
+                        <p className="text-sm text-[var(--color-textSecondary)]">Promotional offers and updates</p>
                       </div>
                     }
                   />
@@ -260,7 +260,7 @@ const SettingsPage = () => {
       >
         <DialogTitle sx={{ color: '#DC2626' }}>Delete Account?</DialogTitle>
         <DialogContent>
-          <p className="text-gray-700 mb-4">
+          <p className="text-[var(--color-textPrimary)] mb-4">
             Are you sure you want to delete your account? This action cannot be undone.
           </p>
           <Alert severity="warning">

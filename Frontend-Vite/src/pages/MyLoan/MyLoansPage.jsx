@@ -147,7 +147,7 @@ const MyLoansPage = () => {
   if (loading && myLoans.length === 0) {
     return (
 
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-8">
+        <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-textPrimary)] py-8 transition-colors duration-300">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
             <div className="h-10 bg-gray-200 rounded w-1/3 mb-4 animate-pulse"></div>
@@ -173,19 +173,18 @@ const MyLoansPage = () => {
   return (
     <>
       <div
-        className="min-h-screen bg-gradient-to-br 
-      from-indigo-50 via-white to-purple-50 py-8"
+        className="min-h-screen bg-[var(--color-background)] text-[var(--color-textPrimary)] py-8 transition-colors duration-300"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="mb-8 animate-fade-in-up">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2 flex items-center space-x-3">
+            <h1 className="text-4xl font-bold text-[var(--color-textPrimary)] mb-2 flex items-center space-x-3">
               <span className="text-5xl">📚</span>
               <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                 My Borrowed Books
               </span>
             </h1>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-[var(--color-textSecondary)]">
               Manage your book loans, track due dates, and renew books
             </p>
           </div>
@@ -306,22 +305,22 @@ const MyLoansPage = () => {
         <DialogContent>
           {paymentDialog.loan && (
             <div className="space-y-4 mt-2">
-              <p className="text-gray-700">
+              <p className="text-[var(--color-textSecondary)]">
                 You are about to pay the fine for{" "}
                 <span className="font-semibold">
                   {paymentDialog.loan?.bookTitle}
                 </span>
               </p>
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <div className="bg-[rgba(239,68,68,0.1)] border border-[rgba(239,68,68,0.2)] rounded-lg p-4">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-gray-700 font-medium">
+                  <span className="text-[var(--color-textSecondary)] font-medium">
                     Fine Amount:
                   </span>
                   <span className="text-3xl font-bold text-red-600">
                     ₹{paymentDialog.loan.fineAmount.toFixed(2)}
                   </span>
                 </div>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-[var(--color-textSecondary)]">
                   Overdue by {paymentDialog.loan.overdueDays} days
                 </p>
               </div>

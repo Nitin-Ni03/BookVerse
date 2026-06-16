@@ -10,12 +10,14 @@ import {
   fetchBooks,
   searchBooks,
   fetchBookStats,
+  fetchAIRecommendations,
 } from "./bookThunk";
-import { checkIfInWishlist } from "../wishlist/wishlistThunk";
+
 
 // Initial state
 const initialState = {
   books: [],
+  aiRecommendations: [],
   currentBook: null,
   searchResults: {
     content: [],
@@ -231,6 +233,20 @@ const bookSlice = createSlice({
       // Fetch book stats
       .addCase(fetchBookStats.fulfilled, (state, action) => {
         state.stats = action.payload;
+      })
+      
+      // ==================== AI RECOMMENDATIONS ====================
+      .addCase(fetchAIRecommendations.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchAIRecommendations.fulfilled, (state, action) => {
+        state.loading = false;
+        state.aiRecommendations = action.payload || [];
+      })
+      .addCase(fetchAIRecommendations.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

@@ -53,21 +53,21 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className="bg-white border-t border-slate-200 text-slate-600">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center space-x-2 group mb-6">
-              <div className="p-2 bg-indigo-600 rounded-lg group-hover:bg-indigo-700 transition-colors">
-                <MenuBookIcon sx={{ fontSize: 24, color: 'white' }} />
+              <div className="h-10 w-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center text-white shadow-md transition-transform duration-300 group-hover:scale-105">
+                <MenuBookIcon className="h-6 w-6 text-white" />
               </div>
-              <span className="text-2xl font-bold text-white">
-                Book Library
+              <span className="text-2xl font-bold text-slate-900">
+                BookVerse
               </span>
             </Link>
-            <p className="text-gray-400 mb-6 max-w-sm">
+            <p className="text-slate-500 mb-6 max-w-sm">
               Your gateway to endless knowledge. Discover, reserve, and enjoy thousands of books from our extensive collection.
             </p>
 
@@ -77,8 +77,8 @@ const Footer = () => {
                 const Icon = item.icon;
                 return (
                   <div key={index} className="flex items-center space-x-3 text-sm">
-                    <Icon sx={{ fontSize: 16, color: '#6366F1' }} />
-                    <span>{item.text}</span>
+                    <Icon sx={{ fontSize: 16, color: '#4F46E5' }} />
+                    <span className="text-slate-600">{item.text}</span>
                   </div>
                 );
               })}
@@ -87,13 +87,13 @@ const Footer = () => {
 
           {/* Library Links */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Library</h3>
+            <h3 className="text-slate-900 font-semibold mb-4">Library</h3>
             <ul className="space-y-3">
               {footerLinks.library.map((link, index) => (
                 <li key={index}>
                   <Link
                     to={link.path}
-                    className="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
+                    className="text-slate-550 hover:text-indigo-600 transition-colors duration-200 text-sm"
                   >
                     {link.name}
                   </Link>
@@ -104,13 +104,13 @@ const Footer = () => {
 
           {/* Membership Links */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Membership</h3>
+            <h3 className="text-slate-900 font-semibold mb-4">Membership</h3>
             <ul className="space-y-3">
               {footerLinks.membership.map((link, index) => (
                 <li key={index}>
                   <Link
                     to={link.path}
-                    className="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
+                    className="text-slate-550 hover:text-indigo-600 transition-colors duration-200 text-sm"
                   >
                     {link.name}
                   </Link>
@@ -121,13 +121,13 @@ const Footer = () => {
 
           {/* Company Links */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Company</h3>
+            <h3 className="text-slate-900 font-semibold mb-4">Company</h3>
             <ul className="space-y-3">
               {footerLinks.company.map((link, index) => (
                 <li key={index}>
                   <Link
                     to={link.path}
-                    className="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
+                    className="text-slate-550 hover:text-indigo-600 transition-colors duration-200 text-sm"
                   >
                     {link.name}
                   </Link>
@@ -138,13 +138,13 @@ const Footer = () => {
 
           {/* Legal Links */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Legal</h3>
+            <h3 className="text-slate-900 font-semibold mb-4">Legal</h3>
             <ul className="space-y-3">
               {footerLinks.legal.map((link, index) => (
                 <li key={index}>
                   <Link
                     to={link.path}
-                    className="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
+                    className="text-slate-550 hover:text-indigo-600 transition-colors duration-200 text-sm"
                   >
                     {link.name}
                   </Link>
@@ -155,19 +155,19 @@ const Footer = () => {
         </div>
 
         {/* Newsletter Section */}
-        <div className="mt-12 pt-8 border-t border-gray-800">
+        <div className="mt-12 pt-8 border-t border-slate-200">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="text-center md:text-left">
-              <h3 className="text-white font-semibold mb-2">Subscribe to Our Newsletter</h3>
-              <p className="text-gray-400 text-sm">Get updates about new arrivals and special offers.</p>
+              <h3 className="text-slate-900 font-semibold mb-2">Subscribe to Our Newsletter</h3>
+              <p className="text-slate-500 text-sm">Get updates about new arrivals and special offers.</p>
             </div>
             <div className="flex w-full md:w-auto gap-2">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white placeholder-gray-500 flex-1 md:w-64"
+                className="px-4 py-3 bg-white border border-slate-350 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-900 placeholder-slate-400 flex-1 md:w-64"
               />
-              <button className="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors whitespace-nowrap">
+              <button className="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-750 transition-colors whitespace-nowrap shadow-sm">
                 Subscribe
               </button>
             </div>
@@ -176,12 +176,12 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
+      <div className="border-t border-slate-200 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             {/* Copyright */}
-            <p className="text-gray-400 text-sm text-center md:text-left">
-              © {currentYear} BookVerse Library. All rights reserved.
+            <p className="text-slate-500 text-sm text-center md:text-left">
+              © {currentYear} BookVerse. All rights reserved.
             </p>
 
             {/* Social Links */}
@@ -195,7 +195,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="text-gray-400 hover:text-white transition-colors duration-200"
+                    className="text-slate-400 hover:text-indigo-600 transition-colors duration-200"
                   >
                     <Icon sx={{ fontSize: 20 }} />
                   </a>
@@ -204,8 +204,8 @@ const Footer = () => {
             </div>
 
             {/* Made with Love */}
-            <p className="text-gray-400 text-sm">
-              Made with <span className="text-red-500">❤</span> by BookVerse Team
+            <p className="text-slate-550 text-sm">
+              Made with <span className="text-pink-500">❤</span> by BookVerse Team
             </p>
           </div>
         </div>

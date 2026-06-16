@@ -157,18 +157,18 @@ const BooksPage = () => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+      <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-textPrimary)] transition-colors duration-300">
         {/* Header */}
-        <div className="bg-white  border-b border-gray-200">
+        <div className="bg-[var(--color-card)] border-b border-[var(--color-border)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center animate-fade-in-up">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+            <h1 className="text-4xl font-bold text-[var(--color-textPrimary)] mb-2">
               Browse Our{' '}
               <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                 Collection
               </span>
             </h1>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-[var(--color-textSecondary)]">
               Discover thousands of books across all genres
             </p>
           </div>
@@ -184,7 +184,7 @@ const BooksPage = () => {
             <div className="lg:hidden">
               <button
                 onClick={() => setShowMobileFilters(!showMobileFilters)}
-                className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-white rounded-lg shadow-md border border-gray-200 text-gray-700 font-medium hover:bg-gray-50 transition-colors"
+                className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-[var(--color-card)] rounded-lg shadow-md border border-[var(--color-border)] text-[var(--color-textPrimary)] font-medium hover:bg-[var(--color-cardHover)] transition-colors"
               >
                 <FilterListIcon />
                 <span>{showMobileFilters ? 'Hide Filters' : 'Show Filters'}</span>
@@ -212,8 +212,8 @@ const BooksPage = () => {
               )}
 
               {/* Availability Filter */}
-              <div className="bg-white rounded-xl shadow-md p-4 border border-gray-100">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 pb-3 border-b border-gray-200">
+              <div className="bg-[var(--color-card)] rounded-xl shadow-md p-4 border border-[var(--color-border)]">
+                <h3 className="text-lg font-bold text-[var(--color-textPrimary)] mb-4 pb-3 border-b border-[var(--color-border)]">
                   Availability
                 </h3>
                 <FormControl fullWidth>
@@ -312,7 +312,7 @@ const BooksPage = () => {
               {/* Active Filters Display */}
               {(searchTerm || selectedGenreId || availabilityFilter !== 'ALL') && (
                 <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-200">
-                  <span className="text-sm text-gray-600">Active filters:</span>
+                  <span className="text-sm text-[var(--color-textSecondary)]">Active filters:</span>
                   {searchTerm && (
                     <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">
                       Search: {searchTerm}
@@ -355,12 +355,12 @@ const BooksPage = () => {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-16 bg-white rounded-xl shadow-md border border-gray-100">
-                <div className="text-gray-400 mb-4">
+              <div className="text-center py-16 bg-[var(--color-card)] rounded-xl shadow-md border border-[var(--color-border)]">
+                <div className="text-[var(--color-textSecondary)] mb-4">
                   <SearchIcon sx={{ fontSize: 64 }} />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">No Books Found</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-bold text-[var(--color-textPrimary)] mb-2">No Books Found</h3>
+                <p className="text-[var(--color-textSecondary)]">
                   Try adjusting your search or filters to find what you're looking for.
                 </p>
               </div>

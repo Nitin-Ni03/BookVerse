@@ -98,9 +98,9 @@ const SubscriptionsPage = () => {
       ).unwrap();
 
       // Check if payment initiation was successful
-      if (result.paymentUrl) {
+      if (result.checkoutUrl) {
         // Redirect to payment gateway
-        window.location.href = result.paymentUrl;
+        window.location.href = result.checkoutUrl;
       } else if (result.message) {
         showSnackbar(result.message, "success");
         setSubscribeDialog({ open: false, plan: null, loading: false });
@@ -126,12 +126,18 @@ const SubscriptionsPage = () => {
   const handleRenewClick = async (subscription) => {
     try {
       const result = await dispatch(
-        renewSubscription(subscription.id)
+        renewSubscription({
+          subscriptionId: subscription.id,
+          subscribeRequest: {
+            planId: subscription.subscriptionPlan?.id,
+            paymentGateway: subscription.gateway || 'RAZORPAY',
+          }
+        })
       ).unwrap();
 
-      if (result.paymentUrl) {
+      if (result.checkoutUrl) {
         // Redirect to payment gateway
-        window.location.href = result.paymentUrl;
+        window.location.href = result.checkoutUrl;
       } else {
         showSnackbar("Subscription renewed successfully!", "success");
         dispatch(fetchActiveSubscription());

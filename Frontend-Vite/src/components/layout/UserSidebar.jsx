@@ -9,11 +9,17 @@ const UserSidebar = ({
   isMobile,
   setMobileOpen,
   handleProfileMenuClose,
+  isCollapsed,
 }) => {
+  const currentWidth = isCollapsed ? 72 : drawerWidth;
   return (
     <Box
       component="nav"
-      sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}
+      sx={{ 
+        width: { md: currentWidth }, 
+        flexShrink: { md: 0 },
+        transition: "width 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+      }}
     >
       {/* Mobile drawer */}
       <Drawer
@@ -36,6 +42,7 @@ const UserSidebar = ({
           handleProfileMenuClose={handleProfileMenuClose}
           isMobile={isMobile}
           setMobileOpen={setMobileOpen}
+          isCollapsed={false}
         />
       </Drawer>
 
@@ -46,8 +53,10 @@ const UserSidebar = ({
           display: { xs: "none", md: "block" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
-            width: drawerWidth,
+            width: currentWidth,
             border: "none",
+            transition: "width 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+            overflowX: "hidden",
           },
         }}
         open
@@ -56,6 +65,7 @@ const UserSidebar = ({
           isMobile={isMobile}
           setMobileOpen={setMobileOpen}
           handleProfileMenuClose={handleProfileMenuClose}
+          isCollapsed={isCollapsed}
         />
       </Drawer>
     </Box>

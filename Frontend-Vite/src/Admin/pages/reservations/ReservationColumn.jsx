@@ -38,7 +38,7 @@ export const columns = [
       minWidth: 150,
     },
     {
-      field: 'reservationDate',
+      field: 'reservedAt',
       headerName: 'Reserved On',
       renderCell: (row) => (
         <Box>

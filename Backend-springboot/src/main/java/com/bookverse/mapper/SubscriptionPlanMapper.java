@@ -33,6 +33,7 @@ public class SubscriptionPlanMapper {
         dto.setIsFeatured(plan.getIsFeatured());
         dto.setBadgeText(plan.getBadgeText());
         dto.setAdminNotes(plan.getAdminNotes());
+        dto.setFeatures(plan.getFeatures());
         dto.setCreatedAt(plan.getCreatedAt());
         dto.setUpdatedAt(plan.getUpdatedAt());
         dto.setCreatedBy(plan.getCreatedBy());
@@ -68,6 +69,7 @@ public class SubscriptionPlanMapper {
         plan.setIsFeatured(dto.getIsFeatured() != null ? dto.getIsFeatured() : false);
         plan.setBadgeText(dto.getBadgeText());
         plan.setAdminNotes(dto.getAdminNotes());
+        plan.setFeatures(dto.getFeatures());
         plan.setCreatedBy(dto.getCreatedBy());
         plan.setUpdatedBy(dto.getUpdatedBy());
 
@@ -118,6 +120,9 @@ public class SubscriptionPlanMapper {
         }
         if (dto.getAdminNotes() != null) {
             plan.setAdminNotes(dto.getAdminNotes());
+        }
+        if (dto.getFeatures() != null) {
+            plan.setFeatures(dto.getFeatures());
         }
         if (dto.getUpdatedBy() != null) {
             plan.setUpdatedBy(dto.getUpdatedBy());

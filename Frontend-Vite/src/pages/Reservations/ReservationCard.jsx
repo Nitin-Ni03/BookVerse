@@ -27,7 +27,7 @@ const ReservationCard = ({ reservation, index, onCancel, onCheckout }) => {
 
   return (
     <div
-      className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden border border-gray-100 animate-fade-in-up"
+      className="bg-[var(--color-card)] rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden border border-[var(--color-border)] text-[var(--color-textPrimary)] animate-fade-in-up"
       style={{
         animationDelay: `${index * 100}ms`,
         opacity: 0,
@@ -69,30 +69,30 @@ const ReservationCard = ({ reservation, index, onCancel, onCheckout }) => {
               <Book className="w-6 h-6 text-white" />
             </div>
             <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+              <p className="text-xs font-semibold text-[var(--color-textSecondary)] uppercase tracking-wide">
                 Book ID
               </p>
-              <h3 className="text-2xl font-bold text-gray-900">
+              <h3 className="text-2xl font-bold text-[var(--color-textPrimary)]">
                 #{reservation.bookId}
               </h3>
             </div>
           </div>
-          <p className="text-base font-medium text-gray-700 ml-12">
+          <p className="text-base font-medium text-[var(--color-textSecondary)] ml-12">
             {reservation.bookTitle}
           </p>
         </div>
 
-        <div className="border-t border-gray-200 my-4"></div>
+        <div className="border-t border-[var(--color-border)] my-4"></div>
 
         {/* Timeline */}
         <div className="space-y-3">
           <div className="flex items-start gap-2">
-            <AccessAlarm className="w-4 h-4 text-gray-400 mt-0.5" />
+            <AccessAlarm className="w-4 h-4 text-[var(--color-textSecondary)] mt-0.5" />
             <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase">
+              <p className="text-xs font-semibold text-[var(--color-textSecondary)] uppercase">
                 Reserved
               </p>
-              <p className="text-sm font-semibold text-gray-700">
+              <p className="text-sm font-semibold text-[var(--color-textPrimary)]">
                 {formatDate(reservation.reservedAt)}
               </p>
             </div>
@@ -143,14 +143,14 @@ const ReservationCard = ({ reservation, index, onCancel, onCheckout }) => {
 
         {/* Queue Position */}
         {queuePos && (
-          <div className="mt-4 p-4 rounded-xl bg-gradient-to-r from-yellow-50 to-amber-50 border border-yellow-200">
+          <div className="mt-4 p-4 rounded-xl bg-[rgba(245,158,11,0.1)] border border-[rgba(245,158,11,0.2)]">
             <div className="flex items-center gap-2 mb-2">
-              <MusicNote className="w-5 h-5 text-amber-700" />
-              <span className="text-base font-bold text-amber-900">
+              <MusicNote className="w-5 h-5 text-amber-500" />
+              <span className="text-base font-bold text-[var(--color-textPrimary)]">
                 Position #{queuePos.position}
               </span>
             </div>
-            <div className="flex items-center gap-1 text-xs text-amber-700 font-semibold">
+            <div className="flex items-center gap-1 text-xs text-amber-500 font-semibold">
               <TrendingUp className="w-3 h-3" />
               <span>
                 ~{queuePos.estimatedWaitTimeMinutes} minutes estimated wait
@@ -182,7 +182,7 @@ const ReservationCard = ({ reservation, index, onCancel, onCheckout }) => {
             <button
               onClick={onCancel}
               className={`${reservation.status === "AVAILABLE" ? "" : "flex-1"
-                } border-2 border-red-500 text-red-600 font-bold py-3 px-4 rounded-lg hover:bg-red-50 transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2`}
+                } border-2 border-red-500 text-red-600 font-bold py-3 px-4 rounded-lg hover:bg-[rgba(239,68,68,0.1)] transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2`}
             >
               <Close className="w-5 h-5" />
               Cancel

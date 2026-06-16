@@ -133,17 +133,17 @@ const ProfilePage = () => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-8">
+      <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-textPrimary)] py-8 transition-colors duration-300">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="mb-8 animate-fade-in-up">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+            <h1 className="text-4xl font-bold text-[var(--color-textPrimary)] mb-2">
               My{' '}
               <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                 Profile
               </span>
             </h1>
-            <p className="text-lg text-gray-600">Manage your account information and preferences</p>
+            <p className="text-lg text-[var(--color-textSecondary)]">Manage your account information and preferences</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -181,10 +181,10 @@ const ProfilePage = () => {
                     </IconButton>
                   </div>
 
-                  <h3 className="text-2xl font-bold text-gray-900 mb-1">
+                  <h3 className="text-2xl font-bold text-[var(--color-textPrimary)] mb-1">
                     {formData.fullName}
                   </h3>
-                  <p className="text-gray-600 mb-4">{formData.email}</p>
+                  <p className="text-[var(--color-textSecondary)] mb-4">{formData.email}</p>
 
                   <Chip
                     icon={<VerifiedIcon />}
@@ -199,8 +199,8 @@ const ProfilePage = () => {
 
                   <div className="flex items-center justify-center space-x-1 text-yellow-500 mt-2">
                     <AutoAwesomeIcon />
-                    <span className="font-bold text-gray-900">{userStats.points}</span>
-                    <span className="text-gray-600 text-sm">points</span>
+                    <span className="font-bold text-[var(--color-textPrimary)]">{userStats.points}</span>
+                    <span className="text-[var(--color-textSecondary)] text-sm">points</span>
                   </div>
                 </CardContent>
               </Card>
@@ -208,7 +208,7 @@ const ProfilePage = () => {
               {/* Stats Card */}
               <Card className="animate-fade-in-up animation-delay-200">
                 <CardContent className="p-6">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">
+                  <h3 className="text-lg font-bold text-[var(--color-textPrimary)] mb-4">
                     Reading Stats
                   </h3>
 
@@ -216,7 +216,7 @@ const ProfilePage = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <LocalLibraryIcon sx={{ color: '#4F46E5' }} />
-                        <span className="text-gray-700">Books Read</span>
+                        <span className="text-[var(--color-textPrimary)]">Books Read</span>
                       </div>
                       <span className="font-bold text-indigo-600">
                         {userStats.totalBooksRead}
@@ -226,7 +226,7 @@ const ProfilePage = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <EmojiEventsIcon sx={{ color: '#F59E0B' }} />
-                        <span className="text-gray-700">Current Streak</span>
+                        <span className="text-[var(--color-textPrimary)]">Current Streak</span>
                       </div>
                       <span className="font-bold text-orange-600">
                         {userStats.currentStreak} days
@@ -236,15 +236,15 @@ const ProfilePage = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <BadgeIcon sx={{ color: '#10B981' }} />
-                        <span className="text-gray-700">Member Since</span>
+                        <span className="text-[var(--color-textPrimary)]">Member Since</span>
                       </div>
-                      <span className="font-semibold text-gray-900">
+                      <span className="font-semibold text-[var(--color-textPrimary)]">
                         {new Date(userStats.memberSince).getFullYear()}
                       </span>
                     </div>
 
-                    <div className="pt-4 border-t border-gray-200">
-                      <p className="text-sm text-gray-600 mb-1">Favorite Genre</p>
+                    <div className="pt-4 border-t border-[var(--color-border)]">
+                      <p className="text-sm text-[var(--color-textSecondary)] mb-1">Favorite Genre</p>
                       <Chip
                         label={userStats.favoriteGenre}
                         size="small"
@@ -262,7 +262,7 @@ const ProfilePage = () => {
               <Card className="animate-fade-in-up animation-delay-400">
                 <CardContent className="p-8">
                   <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-2xl font-bold text-gray-900">
+                    <h3 className="text-2xl font-bold text-[var(--color-textPrimary)]">
                       Profile Information
                     </h3>
                     {!isEditing ? (
@@ -292,7 +292,7 @@ const ProfilePage = () => {
                   <div className="space-y-6">
                     {/* Full Name */}
                     <div>
-                      <label className="flex items-center space-x-2 text-gray-700 font-medium mb-2">
+                      <label className="flex items-center space-x-2 text-[var(--color-textPrimary)] font-medium mb-2">
                         <BadgeIcon sx={{ fontSize: 20 }} />
                         <span>Full Name</span>
                       </label>
@@ -317,7 +317,7 @@ const ProfilePage = () => {
 
                     {/* Email */}
                     <div>
-                      <label className="flex items-center space-x-2 text-gray-700 font-medium mb-2">
+                      <label className="flex items-center space-x-2 text-[var(--color-textPrimary)] font-medium mb-2">
                         <EmailIcon sx={{ fontSize: 20 }} />
                         <span>Email Address</span>
                       </label>
@@ -343,7 +343,7 @@ const ProfilePage = () => {
 
                     {/* Phone */}
                     <div>
-                      <label className="flex items-center space-x-2 text-gray-700 font-medium mb-2">
+                      <label className="flex items-center space-x-2 text-[var(--color-textPrimary)] font-medium mb-2">
                         <PhoneIcon sx={{ fontSize: 20 }} />
                         <span>Phone Number</span>
                       </label>
@@ -368,7 +368,7 @@ const ProfilePage = () => {
 
                     {/* Date of Birth */}
                     <div>
-                      <label className="flex items-center space-x-2 text-gray-700 font-medium mb-2">
+                      <label className="flex items-center space-x-2 text-[var(--color-textPrimary)] font-medium mb-2">
                         <CakeIcon sx={{ fontSize: 20 }} />
                         <span>Date of Birth</span>
                       </label>
@@ -394,7 +394,7 @@ const ProfilePage = () => {
 
                     {/* Address */}
                     <div>
-                      <label className="flex items-center space-x-2 text-gray-700 font-medium mb-2">
+                      <label className="flex items-center space-x-2 text-[var(--color-textPrimary)] font-medium mb-2">
                         <LocationOnIcon sx={{ fontSize: 20 }} />
                         <span>Address</span>
                       </label>
@@ -421,7 +421,7 @@ const ProfilePage = () => {
 
                     {/* Bio */}
                     <div>
-                      <label className="text-gray-700 font-medium mb-2 block">
+                      <label className="text-[var(--color-textPrimary)] font-medium mb-2 block">
                         Bio
                       </label>
                       <TextField
@@ -452,7 +452,7 @@ const ProfilePage = () => {
               {/* Achievements Card */}
               <Card className="animate-fade-in-up animation-delay-600">
                 <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                  <h3 className="text-2xl font-bold text-[var(--color-textPrimary)] mb-6">
                     Achievements
                   </h3>
 
@@ -461,8 +461,8 @@ const ProfilePage = () => {
                       <div
                         key={achievement.id}
                         className={`p-4 rounded-xl border-2 transition-all ${achievement.earned
-                            ? 'bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-400'
-                            : 'bg-gray-50 border-gray-200 opacity-50'
+                            ? 'bg-[rgba(245,158,11,0.1)] border-amber-400 text-[var(--color-textPrimary)]'
+                            : 'bg-[var(--color-backgroundSecondary)] border-[var(--color-border)] opacity-50 text-[var(--color-textSecondary)]'
                           }`}
                       >
                         <div className="flex items-start space-x-3">
@@ -475,10 +475,10 @@ const ProfilePage = () => {
                             />
                           </div>
                           <div className="flex-1">
-                            <h4 className="font-bold text-gray-900 mb-1">
+                            <h4 className="font-bold text-[var(--color-textPrimary)] mb-1">
                               {achievement.title}
                             </h4>
-                            <p className="text-sm text-gray-600">
+                            <p className="text-sm text-[var(--color-textSecondary)]">
                               {achievement.description}
                             </p>
                             {achievement.earned && (
@@ -528,7 +528,7 @@ const ProfilePage = () => {
                 Choose Photo
               </Button>
             </label>
-            <p className="text-sm text-gray-600 mt-4">
+            <p className="text-sm text-[var(--color-textSecondary)] mt-4">
               Recommended: Square image, at least 400x400px
             </p>
           </div>

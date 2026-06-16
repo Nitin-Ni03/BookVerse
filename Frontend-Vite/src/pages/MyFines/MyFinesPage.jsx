@@ -129,7 +129,7 @@ const MyFinesPage = () => {
   if (loading && (!myFines || myFines.length === 0)) {
     return (
       <Layout>
-        <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-orange-50 py-8">
+        <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-textPrimary)] py-8 transition-colors duration-300">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-8">
               <div className="h-10 bg-gray-200 rounded w-1/3 mb-4 animate-pulse"></div>
@@ -137,7 +137,7 @@ const MyFinesPage = () => {
             </div>
             <div className="space-y-4">
               {[1, 2, 3].map((i) => (
-                <div key={i} className="bg-white rounded-xl p-6 shadow-md">
+                <div key={i} className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-6 shadow-md">
                   <div className="animate-pulse space-y-3">
                     <div className="h-6 bg-gray-200 rounded w-3/4"></div>
                     <div className="h-4 bg-gray-200 rounded w-1/2"></div>
@@ -157,9 +157,10 @@ const MyFinesPage = () => {
       <Box
         sx={{
           minHeight: "100vh",
-          background:
-            "linear-gradient(135deg, #fff5f5 0%, #ffffff 50%, #fff8f0 100%)",
+          bgcolor: "background.default",
+          color: "text.primary",
           py: 4,
+          transition: "background-color 300ms ease-in-out, color 300ms ease-in-out",
         }}
       >
         <Box sx={{ maxWidth: 1200, mx: "auto", px: { xs: 2, sm: 3, lg: 4 } }}>

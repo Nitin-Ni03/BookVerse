@@ -142,14 +142,14 @@ const ReservationsPage = () => {
 
 
   const EmptyState = () => (
-    <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-16 text-center border-2 border-dashed border-gray-300 animate-fade-in">
+    <div className="bg-[var(--color-card)] rounded-2xl p-16 text-center border-2 border-dashed border-[var(--color-border)] animate-fade-in">
       <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center opacity-20">
         <Book className="w-16 h-16 text-white" />
       </div>
-      <h3 className="text-2xl font-bold text-gray-700 mb-2">
+      <h3 className="text-2xl font-bold text-[var(--color-textPrimary)] mb-2">
         No reservations found
       </h3>
-      <p className="text-gray-500 mb-6 text-lg">
+      <p className="text-[var(--color-textSecondary)] mb-6 text-lg">
         {activeTab === 0
           ? "You haven't made any reservations yet"
           : `No ${tabs[activeTab].label.toLowerCase()} reservations`}
@@ -165,7 +165,7 @@ const ReservationsPage = () => {
   );
 
   return (
-    <div className="min-h-screen  py-8">
+    <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-textPrimary)] py-8 transition-colors duration-300">
       <style>{`
         @keyframes fadeInUp {
           from {
@@ -198,7 +198,7 @@ const ReservationsPage = () => {
               My Reservations
             </span>
           </div>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-[var(--color-textSecondary)]">
             Manage and track your book reservations
           </p>
         </div>
@@ -208,13 +208,13 @@ const ReservationsPage = () => {
           className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 animate-fade-in-up"
           style={{ animationDelay: "100ms" }}
         >
-          <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+          <div className="bg-[var(--color-card)] rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border border-[var(--color-border)]">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
+                <p className="text-sm font-semibold text-[var(--color-textSecondary)] uppercase tracking-wide">
                   Total Reservations
                 </p>
-                <p className="text-4xl font-extrabold text-gray-900 mt-1">
+                <p className="text-4xl font-extrabold text-[var(--color-textPrimary)] mt-1">
                   {stats.total}
                 </p>
               </div>
@@ -224,13 +224,13 @@ const ReservationsPage = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border border-yellow-200">
+          <div className="bg-[var(--color-card)] rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border border-[var(--color-border)]">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-semibold text-yellow-800 uppercase tracking-wide">
+                <p className="text-sm font-semibold text-amber-500 uppercase tracking-wide">
                   Active
                 </p>
-                <p className="text-4xl font-extrabold text-yellow-900 mt-1">
+                <p className="text-4xl font-extrabold text-[var(--color-textPrimary)] mt-1">
                   {stats.active}
                 </p>
               </div>
@@ -240,13 +240,13 @@ const ReservationsPage = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border border-green-200">
+          <div className="bg-[var(--color-card)] rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border border-[var(--color-border)]">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-semibold text-green-800 uppercase tracking-wide">
+                <p className="text-sm font-semibold text-green-500 uppercase tracking-wide">
                   Ready to Pick Up
                 </p>
-                <p className="text-4xl font-extrabold text-green-900 mt-1">
+                <p className="text-4xl font-extrabold text-[var(--color-textPrimary)] mt-1">
                   {stats.available}
                 </p>
               </div>
@@ -259,17 +259,17 @@ const ReservationsPage = () => {
 
         {/* Tabs and Controls */}
         <div
-          className="bg-white rounded-xl shadow-lg mb-6 overflow-hidden animate-fade-in-up"
+          className="bg-[var(--color-card)] rounded-xl shadow-lg mb-6 overflow-hidden animate-fade-in-up border border-[var(--color-border)]"
           style={{ animationDelay: "200ms" }}
         >
-          <div className="flex border-b border-gray-200">
+          <div className="flex border-b border-[var(--color-border)]">
             {tabs.map((tab, index) => (
               <button
                 key={index}
                 onClick={() => setActiveTab(index)}
                 className={`flex-1 px-6 py-4 font-semibold text-base flex items-center justify-center gap-2 transition-all ${activeTab === index
-                  ? "text-indigo-600 border-b-4 border-indigo-600 bg-indigo-50"
-                  : "text-gray-600 hover:bg-gray-50"
+                  ? "text-indigo-500 border-b-4 border-indigo-500 bg-[rgba(99,102,241,0.15)]"
+                  : "text-[var(--color-textSecondary)] hover:bg-[var(--color-cardHover)]"
                   }`}
               >
                 {tab.icon}
@@ -311,7 +311,7 @@ const ReservationsPage = () => {
       {/* Create Dialog */}
       {createDialogOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50 animate-fade-in">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-fade-in-up">
+          <div className="bg-[var(--color-card)] rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-fade-in-up border border-[var(--color-border)]">
             <div className="bg-gradient-to-r from-indigo-500 to-purple-600 px-6 py-4 flex items-center gap-3">
               <BookmarkAdd className="w-6 h-6 text-white" />
               <h2 className="text-2xl font-bold text-white">
@@ -319,7 +319,7 @@ const ReservationsPage = () => {
               </h2>
             </div>
             <div className="p-6">
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-[var(--color-textPrimary)] mb-2">
                 Book ID
               </label>
               <input
@@ -327,17 +327,17 @@ const ReservationsPage = () => {
                 value={bookId}
                 onChange={(e) => setBookId(e.target.value)}
                 placeholder="Enter the book ID"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-lg"
+                className="w-full px-4 py-3 border border-[var(--color-border)] bg-[var(--color-background)] text-[var(--color-textPrimary)] rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-lg"
                 autoFocus
               />
-              <p className="mt-2 text-sm text-gray-500">
+              <p className="mt-2 text-sm text-[var(--color-textSecondary)]">
                 Enter the ID of the book you want to reserve
               </p>
             </div>
-            <div className="px-6 pb-6 flex gap-3 bg-gray-50">
+            <div className="px-6 pb-6 flex gap-3 bg-[var(--color-card)]">
               <button
                 onClick={() => setCreateDialogOpen(false)}
-                className="flex-1 px-4 py-3 border-2 border-gray-300 text-gray-700 font-bold rounded-lg hover:bg-gray-100 transition-all"
+                className="flex-1 px-4 py-3 border-2 border-[var(--color-border)] text-[var(--color-textPrimary)] font-bold rounded-lg hover:bg-[var(--color-cardHover)] transition-all"
               >
                 Cancel
               </button>
@@ -356,31 +356,31 @@ const ReservationsPage = () => {
       {/* Cancel Dialog */}
       {cancelDialogOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50 animate-fade-in">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-fade-in-up">
-            <div className="bg-red-50 px-6 py-4 flex items-center gap-3">
-              <X className="w-6 h-6 text-red-600" />
-              <h2 className="text-2xl font-bold text-red-700">
+          <div className="bg-[var(--color-card)] rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-fade-in-up border border-[var(--color-border)]">
+            <div className="bg-[rgba(239,68,68,0.1)] px-6 py-4 flex items-center gap-3">
+              <X className="w-6 h-6 text-red-500" />
+              <h2 className="text-2xl font-bold text-red-500">
                 Cancel Reservation
               </h2>
             </div>
             <div className="p-6">
-              <p className="text-gray-700 text-lg mb-4">
+              <p className="text-[var(--color-textPrimary)] text-lg mb-4">
                 Are you sure you want to cancel this reservation for Book ID{" "}
                 <strong>#{selectedReservation?.bookId}</strong>?
               </p>
-              <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
+              <div className="bg-[rgba(245,158,11,0.1)] border-l-4 border-amber-500 p-4 rounded">
                 <div className="flex items-center gap-2">
-                  <Notifications className="w-5 h-5 text-yellow-600" />
-                  <p className="text-sm font-semibold text-yellow-800">
+                  <Notifications className="w-5 h-5 text-amber-500" />
+                  <p className="text-sm font-semibold text-amber-500">
                     This action cannot be undone
                   </p>
                 </div>
               </div>
             </div>
-            <div className="px-6 pb-6 flex gap-3 bg-gray-50">
+            <div className="px-6 pb-6 flex gap-3 bg-[var(--color-card)]">
               <button
                 onClick={() => setCancelDialogOpen(false)}
-                className="flex-1 px-4 py-3 border-2 border-gray-300 text-gray-700 font-bold rounded-lg hover:bg-gray-100 transition-all"
+                className="flex-1 px-4 py-3 border-2 border-[var(--color-border)] text-[var(--color-textPrimary)] font-bold rounded-lg hover:bg-[var(--color-cardHover)] transition-all"
               >
                 Keep Reservation
               </button>

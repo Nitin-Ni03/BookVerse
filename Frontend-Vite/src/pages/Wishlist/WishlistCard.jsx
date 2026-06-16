@@ -15,7 +15,7 @@ const WishlistCard = ({
   return (
     <div
       key={item.id}
-      className={`bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-6 ${
+      className={`bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl shadow-md hover:shadow-xl transition-all p-6 ${
         isSelected ? "ring-2 ring-indigo-500" : ""
       }`}
     >
@@ -51,12 +51,12 @@ const WishlistCard = ({
           <div className="flex items-start justify-between mb-2">
             <div>
               <h3
-                className="text-xl font-bold text-gray-900 mb-1 cursor-pointer hover:text-indigo-600 transition-colors"
+                className="text-xl font-bold text-[var(--color-textPrimary)] mb-1 cursor-pointer hover:text-indigo-600 transition-colors"
                 onClick={() => navigate(`/books/${item.book.id}`)}
               >
                 {item.book.title}
               </h3>
-              <p className="text-gray-600 mb-2">{item.book.author}</p>
+              <p className="text-[var(--color-textSecondary)] mb-2">{item.book.author}</p>
             </div>
 
             <IconButton
@@ -92,13 +92,17 @@ const WishlistCard = ({
               <Chip
                 label={`Note: ${item.notes}`}
                 size="small"
-                sx={{ bgcolor: "#FEF3C7", color: "#92400E" }}
+                sx={{
+                  bgcolor: "rgba(245, 158, 11, 0.15)",
+                  color: "var(--color-primary)",
+                  border: "1px solid rgba(245, 158, 11, 0.3)",
+                }}
               />
             )}
           </div>
 
           <div className="flex items-center justify-between">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-[var(--color-textSecondary)]">
               Added: {new Date(item.addedAt).toLocaleDateString()}
             </p>
 

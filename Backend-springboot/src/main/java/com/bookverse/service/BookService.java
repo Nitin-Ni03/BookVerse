@@ -91,6 +91,15 @@ public interface BookService {
     PageResponse<BookDTO> searchBooksWithFilters(
         BookSearchRequest searchRequest);
 
+    // ==================== AI RECOMMENDATIONS ====================
+
+    /**
+     * Get AI-powered personalized book recommendations based on user history.
+     * @return List of recommended book DTOs
+     * @throws UserException if user is not authenticated
+     */
+    List<BookDTO> getAIRecommendations() throws UserException;
+
     // ==================== STATISTICS ====================
 
     /**

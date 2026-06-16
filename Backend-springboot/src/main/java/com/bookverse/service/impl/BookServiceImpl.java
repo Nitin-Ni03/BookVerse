@@ -15,7 +15,9 @@ import com.bookverse.repository.BookRepository;
 import com.bookverse.repository.GenreRepository;
 import com.bookverse.repository.ReservationRepository;
 import com.bookverse.service.BookService;
+import com.bookverse.modal.BookLoan;
 import com.bookverse.service.UserService;
+import com.bookverse.service.gateway.GeminiService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -45,6 +47,7 @@ public class BookServiceImpl implements BookService {
     private final UserService userService;
     private final ReservationRepository reservationRepository;
     private final GenreRepository genreRepository;
+    private final GeminiService geminiService;
 
     // ==================== CRUD OPERATIONS ====================
 
@@ -241,6 +244,64 @@ public class BookServiceImpl implements BookService {
                 pageable);
 
         return convertToPageResponse(bookPage);
+    }
+
+    // ==================== AI RECOMMENDATIONS ====================
+
+    @Override
+    public List<BookDTO> getAIRecommendations() throws UserException {
+        User currentUser = userService.getCurrentUser();
+
+        // 1. Fetch user loan history (limit to 10 recent books)
+        Page<BookLoan> loansPage = bookLoanRepository.findByUserId(currentUser.getId(), PageRequest.of(0, 10));
+        List<BookLoan> loans = loansPage.getContent();
+
+        StringBuilder historyPrompt = new StringBuilder();
+        if (loans.isEmpty()) {
+            historyPrompt.append("None (the user is new and has not borrowed any books yet). Recommend a diverse mix of starter books.");
+        } else {
+            for (BookLoan loan : loans) {
+                Book book = loan.getBook();
+                historyPrompt.append("- Title: ").append(book.getTitle())
+                        .append(", Author: ").append(book.getAuthor())
+                        .append(", Genre: ").append(book.getGenre().getName())
+                        .append("\n");
+            }
+        }
+
+        // 2. Fetch catalog candidates (limit to 50 active books)
+        Page<Book> catalogPage = bookRepository.findAll(PageRequest.of(0, 50));
+        List<Book> catalog = catalogPage.getContent();
+        
+        StringBuilder catalogPrompt = new StringBuilder();
+        for (Book book : catalog) {
+            catalogPrompt.append("ID: ").append(book.getId())
+                    .append(", Title: ").append(book.getTitle())
+                    .append(", Author: ").append(book.getAuthor())
+                    .append(", Genre: ").append(book.getGenre().getName())
+                    .append("\n");
+        }
+
+        // 3. Call Gemini API
+        List<Long> recommendedIds = geminiService.getRecommendations(historyPrompt.toString(), catalogPrompt.toString());
+        
+        // 4. Fetch the recommended Book entities from database
+        List<Book> recommendedBooks = new ArrayList<>();
+        if (recommendedIds != null && !recommendedIds.isEmpty()) {
+            for (Long id : recommendedIds) {
+                bookRepository.findById(id).ifPresent(recommendedBooks::add);
+            }
+        }
+
+        // 5. Fallback recommendations if Gemini fails or returns empty list
+        if (recommendedBooks.isEmpty()) {
+            // Get first 4 active books from catalog as fallback
+            recommendedBooks = catalog.stream().limit(4).toList();
+        }
+
+        return recommendedBooks.stream()
+                .map(bookMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
     // ==================== STATISTICS ====================

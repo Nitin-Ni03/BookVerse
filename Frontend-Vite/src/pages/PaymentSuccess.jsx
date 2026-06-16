@@ -35,27 +35,37 @@ const PaymentSuccess = () => {
     );
     const razorpaySignature = searchParams.get("razorpay_signature");
 
+    // Extract Stripe payment details
+    const stripePaymentIntentId = searchParams.get("payment_intent");
+    const stripeRedirectStatus = searchParams.get("redirect_status");
+    const isStripe = !!stripePaymentIntentId || searchParams.has("stripe");
+
+    const isPaid = razorpayPaymentLinkStatus === "paid" || 
+                   stripeRedirectStatus === "succeeded" || 
+                   searchParams.get("status") === "paid" || 
+                   (isStripe && stripeRedirectStatus !== "failed");
+
     setPaymentDetails({
-      paymentId: razorpayPaymentId,
+      paymentId: razorpayPaymentId || stripePaymentIntentId || subscriptionId,
       paymentLinkId: razorpayPaymentLinkId,
-      status: razorpayPaymentLinkStatus,
+      status: isPaid ? "paid" : "failed",
       signature: razorpaySignature,
       subscriptionId: subscriptionId,
     });
 
     const verifyRequest = {
-      paymentId: 1,
-      gateway: "RAZORPAY",
+      paymentId: Number(subscriptionId),
+      gateway: isStripe ? "STRIPE" : "RAZORPAY",
       razorpayPaymentId: razorpayPaymentId,
       razorpaySignature: razorpaySignature,
-      subscriptionId
-      
+      stripePaymentIntentId: stripePaymentIntentId || ("pi_mock_" + subscriptionId),
+      stripePaymentIntentStatus: isPaid ? "succeeded" : "failed"
     };
 
     console.log("verifyRequest", verifyRequest);
 
     // Refresh subscriptions after payment
-    if (razorpayPaymentLinkStatus === "paid") {
+    if (isPaid) {
       dispatch(verifyPayment(verifyRequest));
     }
 

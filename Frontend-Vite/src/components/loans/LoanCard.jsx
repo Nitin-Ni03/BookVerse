@@ -117,7 +117,7 @@ const LoanCard = ({ loan, onRenew, onPayFine, onReturn }) => {
         borderRadius: 3,
         overflow: 'hidden',
         transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-        border: loan.isOverdue ? '2px solid #EF4444' : '1px solid rgba(0,0,0,0.08)',
+        border: loan.isOverdue ? '2px solid #EF4444' : '1px solid var(--color-border)',
         '&:hover': {
           transform: 'translateY(-4px)',
           boxShadow: 8,
@@ -208,7 +208,7 @@ const LoanCard = ({ loan, onRenew, onPayFine, onReturn }) => {
                   fontWeight: 700,
                   mb: 0.5,
                   cursor: 'pointer',
-                  color: '#1F2937',
+                  color: 'text.primary',
                   '&:hover': {
                     color: '#667eea',
                   },

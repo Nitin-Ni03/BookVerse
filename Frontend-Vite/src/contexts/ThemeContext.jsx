@@ -16,7 +16,7 @@ export const ThemeProvider = ({ children }) => {
   // ✅ Default to "light" (fallback if saved theme is invalid)
   const [currentTheme, setCurrentTheme] = useState(() => {
     const savedTheme = localStorage.getItem("app-theme");
-    return savedTheme && themes[savedTheme] ? savedTheme : "light";
+    return savedTheme && themes[savedTheme] ? savedTheme : "dark";
   });
 
   const [isTransitioning, setIsTransitioning] = useState(false);

@@ -50,6 +50,7 @@ public class SubscriptionPlanDTO {
     private Boolean isFeatured;
     private String badgeText;
     private String adminNotes;
+    private String features;
 
     // Calculated fields
     private Double priceInMajorUnits;

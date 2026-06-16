@@ -42,6 +42,7 @@ const SubscriptionPlanForm = ({
     isFeatured: false,
     badgeText: "",
     adminNotes: "",
+    features: "",
   });
 
   const [submitError, setSubmitError] = useState(null);
@@ -62,6 +63,7 @@ const SubscriptionPlanForm = ({
         isFeatured: plan.isFeatured || false,
         badgeText: plan.badgeText || "",
         adminNotes: plan.adminNotes || "",
+        features: plan.features || "",
       });
     } else {
       setFormData({
@@ -78,6 +80,7 @@ const SubscriptionPlanForm = ({
         isFeatured: false,
         badgeText: "",
         adminNotes: "",
+        features: "",
       });
     }
   }, [plan]);
@@ -280,6 +283,19 @@ const SubscriptionPlanForm = ({
                 setFormData({ ...formData, adminNotes: e.target.value })
               }
               helperText="Internal notes for admins"
+            />
+          </Grid>
+          <Grid size={{ xs: 12 }}>
+            <TextField
+              fullWidth
+              label="Plan Features"
+              multiline
+              rows={2}
+              value={formData.features}
+              onChange={(e) =>
+                setFormData({ ...formData, features: e.target.value })
+              }
+              helperText="Comma-separated list of benefits/features (e.g., Access to Premium Books, Unlimited Renewals)"
             />
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>

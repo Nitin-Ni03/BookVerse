@@ -4,22 +4,30 @@ import { Card, CardContent } from "@mui/material"
 
 const StatsCard = ({ icon, value, title, subtitle, bgColor, textColor }) => {
   return (
-    <Card className="hover:shadow-lg transition-shadow">
+    <Card 
+      className="hover:shadow-md transition-shadow border"
+      sx={{ 
+        bgcolor: 'var(--color-card)', 
+        color: 'var(--color-textPrimary)',
+        borderColor: 'var(--color-border)',
+        boxShadow: 'none',
+      }}
+    >
       <CardContent>
         <div className="flex items-center justify-between mb-4">
-          <div className={`p-3 rounded-lg ${bgColor}`}>
+          <div className={`p-3 rounded-xl bg-[var(--color-backgroundSecondary)] border border-[var(--color-border)]`}>
             {icon}
           </div>
 
-          <span className={`text-3xl font-bold ${textColor}`}>
+          <span className={`text-3xl font-extrabold text-[var(--color-textPrimary)]`}>
             {value}
           </span>
         </div>
 
-        <p className="text-gray-700 font-semibold mb-1">
+        <p className="font-semibold mb-1 text-[var(--color-textPrimary)]">
           {title}
         </p>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-[var(--color-textSecondary)]">
           {subtitle}
         </p>
       </CardContent>
@@ -27,4 +35,4 @@ const StatsCard = ({ icon, value, title, subtitle, bgColor, textColor }) => {
   )
 }
 
-export default StatsCard
+export default StatsCard;

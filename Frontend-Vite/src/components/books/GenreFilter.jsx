@@ -40,8 +40,8 @@ const GenreFilter = ({ genres, selectedGenreId, onGenreSelect }) => {
         <div
           className={`flex items-center space-x-2 py-2 px-3 rounded-lg cursor-pointer transition-all duration-200 ${
             isSelected
-              ? 'bg-indigo-50 text-indigo-700 font-semibold'
-              : 'hover:bg-gray-50 text-gray-700'
+              ? 'bg-[rgba(99,102,241,0.15)] text-indigo-500 font-semibold'
+              : 'hover:bg-[var(--color-cardHover)] text-[var(--color-textSecondary)]'
           }`}
           style={{ paddingLeft: `${level * 1.5 + 0.75}rem` }}
         >
@@ -52,7 +52,7 @@ const GenreFilter = ({ genres, selectedGenreId, onGenreSelect }) => {
                 e.stopPropagation();
                 toggleGenre(genre.id);
               }}
-              className="p-0.5 hover:bg-gray-200 rounded transition-colors"
+              className="p-0.5 hover:bg-[var(--color-cardHover)] rounded transition-colors"
             >
               {isExpanded ? (
                 <ExpandLessIcon sx={{ fontSize: 18 }} />
@@ -104,10 +104,10 @@ const GenreFilter = ({ genres, selectedGenreId, onGenreSelect }) => {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-md p-4 border border-gray-100">
+    <div className="bg-[var(--color-card)] rounded-xl shadow-md p-4 border border-[var(--color-border)]">
       {/* Header */}
-      <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-200">
-        <h3 className="text-lg font-bold text-gray-900">Genres</h3>
+      <div className="flex items-center justify-between mb-4 pb-3 border-b border-[var(--color-border)]">
+        <h3 className="text-lg font-bold text-[var(--color-textPrimary)]">Genres</h3>
         {selectedGenreId && (
           <button
             onClick={() => onGenreSelect(null)}
@@ -122,8 +122,8 @@ const GenreFilter = ({ genres, selectedGenreId, onGenreSelect }) => {
       <div
         className={`flex items-center space-x-2 py-2 px-3 mb-2 rounded-lg cursor-pointer transition-all duration-200 ${
           !selectedGenreId
-            ? 'bg-indigo-50 text-indigo-700 font-semibold'
-            : 'hover:bg-gray-50 text-gray-700'
+            ? 'bg-[rgba(99,102,241,0.15)] text-indigo-500 font-semibold'
+            : 'hover:bg-[var(--color-cardHover)] text-[var(--color-textSecondary)]'
         }`}
         onClick={() => onGenreSelect(null)}
       >
@@ -140,7 +140,7 @@ const GenreFilter = ({ genres, selectedGenreId, onGenreSelect }) => {
         {genres && genres.length > 0 ? (
           genres.map((genre) => renderGenreItem(genre))
         ) : (
-          <p className="text-sm text-gray-500 text-center py-4">
+          <p className="text-sm text-[var(--color-textSecondary)] text-center py-4">
             No genres available
           </p>
         )}

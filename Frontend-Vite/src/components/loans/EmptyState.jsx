@@ -51,15 +51,15 @@ const EmptyState = ({ filterType = 'all' }) => {
   const content = getEmptyStateContent();
 
   return (
-    <Card className="text-center py-16 animate-fade-in-up animation-delay-400">
+    <Card className="text-center py-16 animate-fade-in-up animation-delay-400 border border-[var(--color-border)] bg-[var(--color-card)]">
       <CardContent>
-        <div className="text-gray-400 mb-4 animate-fade-in-scale animation-delay-600">
+        <div className="text-[var(--color-textSecondary)] mb-4 animate-fade-in-scale animation-delay-600">
           {content.icon}
         </div>
-        <h3 className="text-2xl font-bold text-gray-900 mb-2 animate-fade-in-up animation-delay-800">
+        <h3 className="text-2xl font-bold text-[var(--color-textPrimary)] mb-2 animate-fade-in-up animation-delay-800">
           {content.title}
         </h3>
-        <p className="text-gray-600 mb-6 animate-fade-in-up animation-delay-1000">
+        <p className="text-[var(--color-textSecondary)] mb-6 animate-fade-in-up animation-delay-1000">
           {content.message}
         </p>
         <Button

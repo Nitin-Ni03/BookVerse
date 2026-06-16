@@ -219,6 +219,24 @@ public class BookController {
         return ResponseEntity.ok(books);
     }
 
+    /**
+     * Get AI-powered book recommendations based on user's reading history
+     * GET /api/books/recommendations
+     */
+    @GetMapping("/recommendations")
+    public ResponseEntity<?> getAIRecommendations() {
+        try {
+            List<BookDTO> recommendations = bookService.getAIRecommendations();
+            return ResponseEntity.ok(recommendations);
+        } catch (UserException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(new ApiResponse(e.getMessage(), false));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ApiResponse("Failed to load recommendations: " + e.getMessage(), false));
+        }
+    }
+
     // ==================== STATISTICS ====================
 
     /**

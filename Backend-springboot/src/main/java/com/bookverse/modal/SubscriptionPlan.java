@@ -122,6 +122,12 @@ public class SubscriptionPlan {
     private String adminNotes;
 
     /**
+     * Comma-separated list of plan features/benefits
+     */
+    @Column(name = "features", columnDefinition = "TEXT")
+    private String features;
+
+    /**
      * Record creation timestamp
      */
     @CreationTimestamp

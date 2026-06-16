@@ -8,9 +8,6 @@ const ThemeToggle = () => {
   const themeIcons = {
     light: "☀️",
     dark: "🌙",
-    ocean: "🌊",
-    forest: "🌲",
-    sunset: "🌅",
   };
 
   const handleThemeChange = (themeName) => {
