@@ -134,3 +134,10 @@ html {
   outline: 2px solid #4f46e5;
   outline-offset: 2px;
 }
+
+/* Exclude inputs/textareas/selects from the global focus-visible outline to prevent double borders */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+}

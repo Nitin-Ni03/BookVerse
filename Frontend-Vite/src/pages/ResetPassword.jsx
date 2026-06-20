@@ -11,6 +11,8 @@ import {
   Box,
   Typography,
 } from '@mui/material';
+import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
+import { getTheme } from '../config/themes';
 import LockIcon from '@mui/icons-material/Lock';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -100,8 +102,9 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full">
+    <MuiThemeProvider theme={getTheme('light')}>
+      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full">
         {/* Header */}
         <div className="text-center mb-8 animate-fade-in-up">
           <Link to="/" className="inline-flex items-center space-x-2 group mb-6">
@@ -200,6 +203,10 @@ const ResetPassword = () => {
                         '&.Mui-focused fieldset': {
                           borderColor: '#4F46E5',
                         },
+                        '& input:-webkit-autofill': {
+                          WebkitBoxShadow: '0 0 0 100px #ffffff inset !important',
+                          WebkitTextFillColor: '#0f172a !important',
+                        },
                       },
                       '& .MuiInputLabel-root.Mui-focused': {
                         color: '#4F46E5',
@@ -245,6 +252,10 @@ const ResetPassword = () => {
                         },
                         '&.Mui-focused fieldset': {
                           borderColor: '#4F46E5',
+                        },
+                        '& input:-webkit-autofill': {
+                          WebkitBoxShadow: '0 0 0 100px #ffffff inset !important',
+                          WebkitTextFillColor: '#0f172a !important',
                         },
                       },
                       '& .MuiInputLabel-root.Mui-focused': {
@@ -342,8 +353,9 @@ const ResetPassword = () => {
             Contact Support
           </Link>
         </p>
+        </div>
       </div>
-    </div>
+    </MuiThemeProvider>
   );
 };
 
